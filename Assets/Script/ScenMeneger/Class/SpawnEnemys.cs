@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test : MonoBehaviour
+public class SpawnEnemys : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        print(test);
+        
     }
 
     // Update is called once per frame

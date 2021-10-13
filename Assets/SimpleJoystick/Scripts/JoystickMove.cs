@@ -41,8 +41,8 @@ namespace GeekGame.Input{
 
 		}
 		void Start(){
-
-			_r=1f*Screen.width/960f*R; //this to calculate the scale of screen
+		
+			_r =1f*Screen.width/960f*R; //this to calculate the scale of screen
 
 			centerPos=GetComponent<RectTransform>().position;
 
