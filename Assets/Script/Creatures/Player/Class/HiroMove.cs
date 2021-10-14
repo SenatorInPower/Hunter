@@ -16,7 +16,7 @@ namespace Assets.Script.Creatures.Player.Class
         {
             _speed = Convert.ToInt32(speed);
 
-
+            
         }
         void Teleportation()
         {

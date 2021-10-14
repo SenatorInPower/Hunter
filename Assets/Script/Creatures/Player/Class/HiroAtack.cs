@@ -18,12 +18,12 @@ namespace Assets.Script.Creatures.Player.Class
 
         public void Atack(IHP hp)
         {
-            
+            hp.HP -= _damage;
         }
 
-        public void AtackOut(IHP hp)
+        public void AtackOut()
         {
-          
+            _HPHiro.HP -= _damage;
         }
     }
    

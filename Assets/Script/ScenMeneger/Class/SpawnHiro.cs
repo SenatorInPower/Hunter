@@ -1,11 +1,15 @@
 using Assets.Script.Creatures.Player.Class;
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 public class SpawnHiro : SerializedMonoBehaviour
 {
-    public GameObject hiroPrefab;
-    public Stats HiroStats;
+    [SerializeField]
+    private GameObject hiroPrefab;
+    [SerializeField]
+    private Stats HiroStats;
+   
     public struct Stats
     {
 

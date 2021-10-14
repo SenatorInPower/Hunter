@@ -1,16 +1,19 @@
 using System;
 using UnityEngine;
 
-public class Boll : MonoBehaviour
+namespace Assets.Script.Creatures.Player.HiroAtack
 {
-    internal int Damage;
-    internal Action<IHP> BollCollision;
-    const string EnemysTag = "Enemys";
-    private void OnCollisionEnter(Collision collision)
+    public class Boll : MonoBehaviour
     {
-        if (collision.gameObject.tag == EnemysTag)
+        internal int Damage;
+        internal Action<IHP> BollCollision;
+        const string EnemysTag = "Enemys";
+        private void OnCollisionEnter(Collision collision)
         {
-            BollCollision.Invoke(collision.gameObject.GetComponent<IHP>());
+            if (collision.gameObject.tag == EnemysTag)
+            {
+                BollCollision.Invoke(collision.gameObject.GetComponent<IHP>());
+            }
         }
     }
 }
