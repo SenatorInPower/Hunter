@@ -1,12 +1,30 @@
 using Assets.Script.Creatures.Interfase;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class HiroMove : HiroControl,IMove
+namespace Assets.Script.Creatures.Player.Class
 {
-    private int  _speed;
-    public int Speed { get => _speed; set => _speed=value; }
+    public sealed class HiroMove : HiroControl, IMove
+    {
+        private int _speed;
+        public int Speed { get => _speed; set => _speed = value; }
 
 
+
+        public override void InitStats<T>(T speed)
+        {
+            _speed = Convert.ToInt32(speed);
+
+
+        }
+        void Teleportation()
+        {
+
+        }
+        void MoveFromTheBorder()
+        {
+
+        }
+    }
 }

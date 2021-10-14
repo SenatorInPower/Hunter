@@ -1,24 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Assets.Script.Creatures.Player.Class;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
+using UnityEngine;
 
 public class SpawnHiro : SerializedMonoBehaviour
 {
-    struct Stats
+    public GameObject hiroPrefab;
+    public Stats HiroStats;
+    public struct Stats
     {
-        int HP;
-        int Demage;
-        int Energy;
-        Transform PosSpawner;
+
+        public int HP;
+        public int Demage;
+        public int Energy;
+        public int Speed;
+        public Transform PosSpawner;
     }
-    
+
     [Button]
-   
-    void SpawnerHiro(Stats stats)
+
+    void SpawnerHiro()
     {
-        HiroControl Hiro = new HiroControl();
-        
+        GameObject Hiro = Instantiate(hiroPrefab, HiroStats.PosSpawner);
+
+        HiroControl.InitHiro(Hiro, HiroStats);
+
     }
 }

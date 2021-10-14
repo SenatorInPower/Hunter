@@ -1,13 +1,30 @@
 using Assets.Script.Creatures.Interfase;
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class HiroAtack : HiroControl, IAtack
+namespace Assets.Script.Creatures.Player.Class
 {
-    public void Atack(IHP hp, IDamage damage)
+    public sealed class HiroAtack : HiroControl, IAtack, IDamage
     {
-       
+         
+        private int _damage;
+        public int DamageGive { get => _damage; set => _damage = value; }
+
+
+        public override void InitStats<T>(T t)
+        {
+            _damage = Convert.ToInt32(t);
+        }
+
+        public void Atack(IHP hp)
+        {
+            
+        }
+
+        public void AtackOut(IHP hp)
+        {
+          
+        }
     }
-    
+   
 }
