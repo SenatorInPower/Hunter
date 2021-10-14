@@ -1,2 +1,2 @@
 # Hunter
-Test for Retro style Games 
+Test for Retro Style Games 
