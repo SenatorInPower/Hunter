@@ -15,23 +15,25 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         [SerializeField]
         private int BollCount = 10;
         [SerializeField]
-        private List<GameObject> pull;
+        private List<Boll> pull;
+        int countBollShut=1;
         private void Awake()
         {
             SceneManager.sceneLoaded += LoadScen;
             for (int i = 0; i < BollCount; i++)
             {
                 GameObject Bools = Instantiate(Boll, atackHiro.transform);
-                pull.Add(Bools);
-                Bools.SetActive(false);
                 Boll objectBoll = Bools.GetComponent<Boll>();
+                pull.Add(objectBoll);
+                Bools.SetActive(false);
+              
                 objectBoll.Damage = atackHiro.DamageGive;
                 objectBoll.BollCollision += Damage;
 
             }
 
         }
-        public List<GameObject> BollGet()
+        public List<Boll> BollGet()
         {
             return pull;
         }

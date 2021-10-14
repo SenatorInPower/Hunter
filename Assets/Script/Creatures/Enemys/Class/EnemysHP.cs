@@ -1,18 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemysHP : MonoBehaviour
+public class EnemysHP : MonoBehaviour,IHP
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int _HP;
+    public int HP { get => _HP; set  { _HP = value; if (_HP < 1) { _dead.Invoke(); } }  }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int _MaxHP;
+    public int MaxHP { get => _MaxHP; }
+
+    private Action _dead;
+    public Action Dead { get => _dead; set => _dead = value; }
 }
