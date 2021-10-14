@@ -389,16 +389,16 @@ MonoBehaviour:
     - Name: enemysSpawnRed
       Entry: 7
       Data: EnemysSpawn, Assembly-CSharp
-    - Name: _EnemysTipe
+    - Name: EnemysTipe
       Entry: 3
       Data: 1
-    - Name: _Count
+    - Name: Count
       Entry: 3
-      Data: 4
-    - Name: _Prefab
+      Data: 15
+    - Name: Prefab
       Entry: 10
       Data: 0
-    - Name: _SpawnPos
+    - Name: SpawnPos
       Entry: 10
       Data: 1
     - Name: 
@@ -407,16 +407,16 @@ MonoBehaviour:
     - Name: enemysSpawnBlue
       Entry: 7
       Data: EnemysSpawn, Assembly-CSharp
-    - Name: _EnemysTipe
+    - Name: EnemysTipe
       Entry: 3
       Data: 0
-    - Name: _Count
+    - Name: Count
       Entry: 3
-      Data: 1
-    - Name: _Prefab
+      Data: 12
+    - Name: Prefab
       Entry: 10
       Data: 2
-    - Name: _SpawnPos
+    - Name: SpawnPos
       Entry: 10
       Data: 3
     - Name: 
@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.35
+  m_fontSize: 30
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2153,7 +2153,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.8
+  m_fontSize: 27.65
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

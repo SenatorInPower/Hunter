@@ -12,6 +12,8 @@ public struct StatsHiro
 }
 public class SpawnHiro : SerializedMonoBehaviour
 {
+    [InfoBox("Select Stats value.", InfoMessageType.Info)]
+
     [SerializeField]
     private Transform PosSpawner;
     [SerializeField]

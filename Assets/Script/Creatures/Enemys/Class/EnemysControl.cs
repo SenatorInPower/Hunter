@@ -7,10 +7,10 @@ public class EnemysControl : MonoBehaviour
 {
 
     //   public abstract void InitStats<T>(T t);
-    private IMove _MoveEnemys;  
-    private IHP _HPEnemys;
-    private IEnergy _EnergyEnemys;
-    private IAtack _AtackEnemys;
+    internal IMove _MoveEnemys;
+    internal IHP _HPEnemys;
+    internal IEnergy _EnergyEnemys;
+    internal IAtack _AtackEnemys;
 
     internal void InitEnemys(GameObject obj, StatsEnemys enemysStats)
     {
