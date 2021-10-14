@@ -15,7 +15,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         [SerializeField]
         private int BollCount = 10;
         [SerializeField]
-        private List<Boll> pull;
+        private List<Boll> pull =>new List<Boll>();
         int countBollShut=1;
         private void Awake()
         {

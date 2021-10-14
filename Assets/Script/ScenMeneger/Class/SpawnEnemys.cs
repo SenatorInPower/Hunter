@@ -40,17 +40,47 @@ public class SpawnEnemys : SerializedMonoBehaviour
     private static List<EnemysControl> enemysControlsBlue;
 
 
-    
-    private WaitForSeconds _waitTime=>new WaitForSeconds(5);
 
+
+    private WaitForSeconds _waitTimeBlue=>new WaitForSeconds(5);
+    private WaitForSeconds _waitTimeRed=>new WaitForSeconds(5);
+    private void Awake()
+    {
+        enemysControlsRed = new List<EnemysControl>();
+        enemysControlsBlue = new List<EnemysControl>();
+    }
+    void Init()
+    {
+
+    }
     [Button]
   
     void EnemysCriate()
     {
-        StartCoroutine(Spawn());
+        StartCoroutine(SpawnBlue());
+        StartCoroutine(SpawnRed());
     }
 
-    IEnumerator Spawn()
+    IEnumerator SpawnBlue()
+    {
+        while (true)
+        {
+            
+            for (int i = 0; i < enemysSpawnBlue.Count; i++)
+            {
+                GameObject blue = Instantiate(enemysSpawnBlue.Prefab, enemysSpawnBlue.SpawnPos);
+                EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
+                enemysControl.InitEnemys(blue, enemysBlueStats);
+                enemysControlsBlue.Add(enemysControl);
+                print(enemysControlsRed.Count);
+                yield return _waitTimeBlue;
+
+            }
+          
+        }
+    }
+
+    IEnumerator SpawnRed()
     {
         while (true)
         {
@@ -60,16 +90,13 @@ public class SpawnEnemys : SerializedMonoBehaviour
                 EnemysControl enemysControl = red.AddComponent<EnemysControl>();
                 enemysControl.InitEnemys(red, enemysRedStats);
                 enemysControlsRed.Add(enemysControl);
+                print(enemysControlsBlue.Count);
+                yield return _waitTimeRed;
+               
             }
-            for (int i = 0; i < enemysSpawnBlue.Count; i++)
-            {
-                GameObject blue = Instantiate(enemysSpawnRed.Prefab, enemysSpawnRed.SpawnPos);
-                EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
-                enemysControl.InitEnemys(blue, enemysBlueStats);
-                enemysControlsBlue.Add(enemysControl);
-            }
-            yield return _waitTime;
+       
+
+
         }
     }
-
 }
