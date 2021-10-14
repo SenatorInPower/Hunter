@@ -33,22 +33,17 @@ namespace Assets.Script.Creatures.Player.Class
         //}
 
 
-        internal static void InitHiro(GameObject obj, Stats hiroStats)
+        internal static void InitHiro(GameObject obj, StatsHiro hiroStats)
         {
-
 
 
             HiroMove hiroMove = obj.AddComponent<HiroMove>();
             hiroMove.InitStats(hiroStats.Speed);
-            _MoveHiro = hiroMove;
-
-
+            _MoveHiro = hiroMove;           
 
             HiroHP hiroHP = obj.AddComponent<HiroHP>();
             hiroHP.InitStats(hiroStats.HP);
             _HPHiro = hiroHP;
-
-
 
             HiroEnergy hiroEnergy = obj.AddComponent<HiroEnergy>();
             hiroEnergy.InitStats(hiroStats.Energy);
@@ -57,7 +52,6 @@ namespace Assets.Script.Creatures.Player.Class
             HiroAtack hiroAtack = obj.AddComponent<HiroAtack>();
             hiroAtack.InitStats(hiroStats.Demage);
             _AtackHiro = hiroAtack;
-
 
 
         }

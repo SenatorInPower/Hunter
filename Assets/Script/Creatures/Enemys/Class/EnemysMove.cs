@@ -1,18 +1,16 @@
+using Assets.Script.Creatures.Interfase;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemysMove : MonoBehaviour
+public class EnemysMove : MonoBehaviour,IMove, IInit
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int _speed;
+    public int Speed { get => _speed; set => _speed = value; }
 
-    // Update is called once per frame
-    void Update()
+    public void InitStats<T>(T t)
     {
-        
+        _speed = Convert.ToInt32(t);
     }
 }

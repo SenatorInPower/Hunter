@@ -22,7 +22,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
 
             if (Chens > 98)
             {
-                boll.MoveTo()
+               // boll.MoveTo()
             }
             else
             {

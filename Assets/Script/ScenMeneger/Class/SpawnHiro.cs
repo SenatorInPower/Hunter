@@ -2,31 +2,31 @@ using Assets.Script.Creatures.Player.Class;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
-
+public struct StatsHiro
+{
+    public int HP;
+    public int Demage;
+    public int Energy;
+    public int Speed;
+    
+}
 public class SpawnHiro : SerializedMonoBehaviour
 {
     [SerializeField]
+    private Transform PosSpawner;
+    [SerializeField]
     private GameObject hiroPrefab;
     [SerializeField]
-    private Stats HiroStats;
+    private StatsHiro HiroStats;
    
-    public struct Stats
-    {
-
-        public int HP;
-        public int Demage;
-        public int Energy;
-        public int Speed;
-        public Transform PosSpawner;
-    }
+    
 
     [Button]
-
-    void SpawnerHiro()
+    void HiroCreate()
     {
-        GameObject Hiro = Instantiate(hiroPrefab, HiroStats.PosSpawner);
-
+        GameObject Hiro = Instantiate(hiroPrefab, PosSpawner);
         HiroControl.InitHiro(Hiro, HiroStats);
+        DestroyImmediate(gameObject);
 
     }
 }

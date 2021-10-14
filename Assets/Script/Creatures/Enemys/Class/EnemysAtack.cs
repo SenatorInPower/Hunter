@@ -1,18 +1,27 @@
+using Assets.Script.Creatures.Interfase;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemysAtack : MonoBehaviour
+public class EnemysAtack : MonoBehaviour,IAtack,IDamage, IInit
 {
-    // Start is called before the first frame update
-    void Start()
+    private int _damage;
+    public int DamageGive { get => _damage; set => _damage = value; }
+
+    public void Atack(IHP enemysHp)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AtackOut()
     {
         
+    }
+
+    public void InitStats<T>(T t)
+    {
+        _damage = Convert.ToInt32(t);
+
     }
 }
