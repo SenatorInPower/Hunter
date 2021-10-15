@@ -39,7 +39,9 @@ namespace Assets.Script.Creatures.Player.Class
 
             HiroMove hiroMove = obj.AddComponent<HiroMove>();
             hiroMove.InitStats(hiroStats.Speed);
-            _MoveHiro = hiroMove;           
+            
+            _MoveHiro = hiroMove;
+            hiroMove.Teleportation = new Teleportation();
 
             HiroHP hiroHP = obj.AddComponent<HiroHP>();
             hiroHP.InitStats(hiroStats.HP);
@@ -48,6 +50,7 @@ namespace Assets.Script.Creatures.Player.Class
             HiroEnergy hiroEnergy = obj.AddComponent<HiroEnergy>();
             hiroEnergy.InitStats(hiroStats.Energy);
             _EnergyHiro = hiroEnergy;
+            hiroEnergy.Ultimate = new Ultimate();
 
             HiroAtack hiroAtack = obj.AddComponent<HiroAtack>();
             hiroAtack.InitStats(hiroStats.Demage);

@@ -7,6 +7,10 @@ namespace Assets.Script.Creatures.Player.Class
 {
     public sealed class HiroMove : HiroControl, IMove
     {
+
+        public CapsuleCollider Collider;
+        internal Teleportation Teleportation;
+        const string NameTagEnemys="Enemys";
         private int _speed;
         public int Speed { get => _speed; set => _speed = value; }
 
@@ -18,13 +22,25 @@ namespace Assets.Script.Creatures.Player.Class
 
             
         }
-        void Teleportation()
+        private void Awake()
         {
-
+            Collider = gameObject.GetComponent<CapsuleCollider>();
+           
+            if(Collider == null)
+            {
+                gameObject.AddComponent<CapsuleCollider>().isTrigger = true;
+                Collider = gameObject.GetComponent<CapsuleCollider>();
+            }
+            Collider.isTrigger = true;
         }
-        void MoveFromTheBorder()
+       
+     
+        private void OnTriggerEnter(Collider other)
         {
+            if(other.tag== NameTagEnemys)
+            {
 
+            }
         }
     }
 }

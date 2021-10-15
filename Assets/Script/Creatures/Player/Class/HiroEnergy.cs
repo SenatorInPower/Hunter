@@ -6,7 +6,7 @@ namespace Assets.Script.Creatures.Player.Class
 {
     public sealed class HiroEnergy : HiroControl, IEnergy
     {
-
+        internal Ultimate Ultimate;
         private int _energy;
         public int Energy { get => _energy; set => _energy=value; }
 
@@ -14,9 +14,6 @@ namespace Assets.Script.Creatures.Player.Class
         {
            
         }
-        void Ultimate()
-        {
-
-        }
+    
     }
 }
