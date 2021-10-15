@@ -9,8 +9,9 @@ namespace Assets.Script.Creatures.Player.Class
     {
 
         public CapsuleCollider Collider;
-        internal Teleportation Teleportation;
-    
+        internal Action<Transform> Teleportation;
+
+
         private int _speed;
         public int Speed { get => _speed; set => _speed = value; }
 

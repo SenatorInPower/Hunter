@@ -1,4 +1,5 @@
-﻿using Assets.Script.Creatures.Interfase;
+﻿using Assets.Script.Creatures.Enemys.Class;
+using Assets.Script.Creatures.Interfase;
 using UnityEngine;
 
 namespace Assets.Script.Creatures.Player.HiroAtack

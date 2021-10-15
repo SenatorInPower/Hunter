@@ -1,6 +1,6 @@
 using Assets.Script.Creatures.Interfase;
 using UnityEngine;
-using static SpawnHiro;
+
 namespace Assets.Script.Creatures.Player.Class
 {
     public abstract class HiroControl : MonoBehaviour
@@ -38,10 +38,9 @@ namespace Assets.Script.Creatures.Player.Class
 
 
             HiroMove hiroMove = obj.AddComponent<HiroMove>();
-            hiroMove.InitStats(hiroStats.Speed);
-            
+            hiroMove.InitStats(hiroStats.Speed);           
             _MoveHiro = hiroMove;
-            hiroMove.Teleportation = new Teleportation();
+            hiroMove.Teleportation = hiroStats.Teleport;
 
             HiroHP hiroHP = obj.AddComponent<HiroHP>();
             hiroHP.InitStats(hiroStats.HP);
@@ -50,12 +49,12 @@ namespace Assets.Script.Creatures.Player.Class
             HiroEnergy hiroEnergy = obj.AddComponent<HiroEnergy>();
             hiroEnergy.InitStats(hiroStats.Energy);
             _EnergyHiro = hiroEnergy;
-            hiroEnergy.Ultimate = new Ultimate();
+            hiroEnergy.Ultimate = hiroStats.Ultimate ;
 
             HiroAtack hiroAtack = obj.AddComponent<HiroAtack>();
             hiroAtack.InitStats(hiroStats.Demage);
             _AtackHiro = hiroAtack;
-
+            
 
         }
 

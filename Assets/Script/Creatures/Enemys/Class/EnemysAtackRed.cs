@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Script.Creatures.Enemys.Class
 {
-    public class EnemysMoveRed : EnemysMove
+    public class EnemysAtackRed : EnemysAtack
     {
 
         // Use this for initialization

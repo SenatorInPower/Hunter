@@ -7,7 +7,7 @@ namespace Assets.Script.Creatures.Player.Class
 {
     public sealed class HiroEnergy : HiroControl, IEnergy
     {
-        internal Ultimate Ultimate;
+        internal Action<GameObject> Ultimate;
         private int _energy;
         public int Energy { get => _energy; set => _energy=value; }
 
@@ -15,6 +15,10 @@ namespace Assets.Script.Creatures.Player.Class
         {
             _energy = Convert.ToInt32(t);
         }
-    
+       
+       public void UltimateHiro(GameObject UltPrefab)
+        {
+            Instantiate(UltPrefab, transform);
+        }
     }
 }

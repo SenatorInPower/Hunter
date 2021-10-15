@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ControlerLevel : MonoBehaviour
+public class ControlerLevel 
 {
     public const string NameTagEnemys = "Enemys";
     public const string NameTagHiro = "Hiro";

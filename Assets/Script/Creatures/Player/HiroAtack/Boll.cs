@@ -1,3 +1,4 @@
+using Assets.Script.Creatures.Enemys.Class;
 using Assets.Script.Creatures.Interfase;
 using DG.Tweening;
 using System;

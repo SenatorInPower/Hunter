@@ -3,36 +3,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public sealed class EnemysAtack : MonoBehaviour,IAtack,IDamage, IInit
+namespace Assets.Script.Creatures.Enemys.Class
 {
-    internal  IHP EnemysHP;
-    private int _damage;
-    public int DamageGive { get => _damage; set => _damage = value; }
-   // internal IID _ID;
-
-    public void Atack(IHP hiroHp)
+    public abstract class EnemysAtack : MonoBehaviour, IAtack, IDamage, IInit
     {
-        
-    }
+        internal IHP EnemysHP;
+        private int _damage;
+        public int DamageGive { get => _damage; set => _damage = value; }
+        // internal IID _ID;
 
-    public void AtackOut(int damage, Action<int> addDeadEnergy)
-    {
-        EnemysHP.HP -= damage;
-        if(EnemysHP.HP <= 0)
+        public void Atack(IHP hiroHp)
         {
-            addDeadEnergy.Invoke(50);
+
         }
-    }
 
-    public void InitStats<T>(T t)
-    {
-        _damage = Convert.ToInt32(t);
+        public void AtackOut(int damage)
+        {
+            EnemysHP.HP -= damage;
+           
+        }
 
-    }
-    public   void Ultimate()
-    {
-        EnemysHP.HP = 0;
-        EnemysHP.Dead.Invoke();
+        public void InitStats<T>(T t)
+        {
+            _damage = Convert.ToInt32(t);
+
+        }
+     
     }
 }
