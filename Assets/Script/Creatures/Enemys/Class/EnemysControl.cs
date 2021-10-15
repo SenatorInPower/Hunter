@@ -15,7 +15,6 @@ public class EnemysControl : MonoBehaviour
     internal void InitEnemys(GameObject obj, StatsEnemys enemysStats)
     {
 
-
         EnemysMove enemysMove = obj.AddComponent<EnemysMove>();
         enemysMove.InitStats(enemysStats.Speed);
         _MoveEnemys = enemysMove;
@@ -27,7 +26,6 @@ public class EnemysControl : MonoBehaviour
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtack>();
         enemysAtack.InitStats(enemysStats.Demage);
         _AtackEnemys = enemysAtack;
-
-
+        enemysAtack.EnemysHP = enemysHP;
     }
 }

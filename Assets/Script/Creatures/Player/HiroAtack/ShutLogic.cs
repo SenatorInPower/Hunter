@@ -15,10 +15,10 @@ namespace Assets.Script.Creatures.Player.HiroAtack
                 
             }
         }
-        void Damage(IHP hp,Boll boll )
+        void Damage(IHP hp, Boll boll, EnemysAtack enemysAtack )
         {
             atackHiro.Atack(hp);
-            float Chens = UnityEngine.Random.Range(atackHiro.ChensRandom(), 100);
+            float Chens = Random.Range(atackHiro.ChensRandom(), 100);
 
             if (Chens > 98)
             {

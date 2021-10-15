@@ -37,16 +37,12 @@ namespace Assets.Script.Creatures.Player.Class
             }
            
         }
-        public void AtackOut()
+        public void AtackOut(int damage)
         {
-            _HPHiro.HP -= _damage;
+            _HPHiro.HP -= damage;
         }
 
-        GameObject AtackNearest(List<GameObject> enemys)
-        {
-            return enemys.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).FirstOrDefault();
-
-        }
+       
     }
    
 }

@@ -17,15 +17,10 @@ namespace Assets.Script.Creatures.Player.HiroAtack
 
         public void MoveTo(List<GameObject> enemys)
         {
-            Transform moveToTransform = AtackNearest(enemys);
+            Transform moveToTransform = SpawnEnemys.AtackNearestBlue(transform.position);
             StartCoroutine(_MoveTo(moveToTransform));
         }
-        Transform AtackNearest(List<GameObject> enemys)
-{
-          //  RaycastHit[] rhit = Physics.BoxCastAll(transform.position, Vector3.one * 7);
-
-            return enemys.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).FirstOrDefault().transform;
-        }
+      
         IEnumerator _MoveTo(Transform to)
         {
             while (true)
@@ -39,10 +34,8 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         {
             if (collision.gameObject.tag == EnemysTag)
             {
-               
-
                 BollCollision.Invoke(collision.gameObject.GetComponent<IHP>(),this);
-             
+                collision.gameObject.GetComponent<EnemysAtack>().AtackOut(Damage);
             }
         }
         private void OnEnable()
