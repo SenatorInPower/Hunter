@@ -14,11 +14,16 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         private Atack.HiroAtack atackHiro;
         [SerializeField]
         private int BollCount = 10;
-        
-        private List<Boll> pull =>new List<Boll>();
+
+        private List<Boll> pull;
         int countBollShut=1;
+        void Init()
+        {
+            pull = new List<Boll>();
+        }
         private void Awake()
         {
+            Init();
             SceneManager.sceneLoaded += LoadScen;
             for (int i = 0; i < BollCount; i++)
             {

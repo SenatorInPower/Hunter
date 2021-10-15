@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Script.Creatures.Interfase;
+using UnityEngine;
 
 namespace Assets.Script.Creatures.Player.HiroAtack
 {
@@ -6,23 +7,25 @@ namespace Assets.Script.Creatures.Player.HiroAtack
     {
         public void Shut()
         {
+            if (countBollShut > pull.Count-1)
+            {
+                countBollShut = 0;
+
+            }
             pull[countBollShut].transform.position = atackHiro.TargetShut.position;
             pull[countBollShut].gameObject.SetActive(true);
             countBollShut++;
-            if (countBollShut > pull.Count)
-            {
-                countBollShut = 0;
-                
-            }
+           
         }
-        void Damage(IHP hp, Boll boll, EnemysAtack enemysAtack )
+        void Damage(Boll boll, EnemysAtack enemysAtack )
         {
-            atackHiro.Atack(hp);
+            atackHiro.Atack(enemysAtack.EnemysHP);
+            enemysAtack.AtackOut(boll.Damage);
             float Chens = Random.Range(atackHiro.ChensRandom(), 100);
 
-            if (Chens > 98)
+            if (Chens > 98)  //if hiro hp is lou chens for move boll in next enemys is up
             {
-               // boll.MoveTo()
+                boll.MoveTo();
             }
             else
             {

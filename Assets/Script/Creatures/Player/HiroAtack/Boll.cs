@@ -1,3 +1,4 @@
+using Assets.Script.Creatures.Interfase;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -10,12 +11,13 @@ namespace Assets.Script.Creatures.Player.HiroAtack
 {
     public class Boll : MonoBehaviour
     {
+        const string EnemysTag = "Enemys";
         const int SpeedBoll = 10;
         internal int Damage;
-        internal Action<IHP,Boll> BollCollision;
-        const string EnemysTag = "Enemys";
+        internal Action<Boll,EnemysAtack> BollCollision;
 
-        public void MoveTo(List<GameObject> enemys)
+        private bool _stopMoveUpdate = false;
+        public void MoveTo()
         {
             Transform moveToTransform = SpawnEnemys.AtackNearestBlue(transform.position);
             StartCoroutine(_MoveTo(moveToTransform));
@@ -23,6 +25,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
       
         IEnumerator _MoveTo(Transform to)
         {
+            _stopMoveUpdate = true;
             while (true)
             {
                 gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, to.position, Time.deltaTime);
@@ -34,13 +37,13 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         {
             if (collision.gameObject.tag == EnemysTag)
             {
-                BollCollision.Invoke(collision.gameObject.GetComponent<IHP>(),this);
-                collision.gameObject.GetComponent<EnemysAtack>().AtackOut(Damage);
+                BollCollision.Invoke(this, collision.gameObject.GetComponent<EnemysAtack>());
+               
             }
         }
         private void OnEnable()
         {
-
+            _stopMoveUpdate = false;
         }
         private void OnDisable()
         {
@@ -48,6 +51,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         }
         private void Update()
         {
+            if(_stopMoveUpdate == false)
             transform.Translate(Vector3.forward * Time.deltaTime* SpeedBoll);
         }
     }
