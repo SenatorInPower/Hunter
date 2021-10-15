@@ -1,4 +1,5 @@
 ﻿using Assets.Script.Creatures.Interfase;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Assets.Script.Creatures.Player.Class
 
         public override void InitStats<T>(T t)
         {
-           
+            _energy = Convert.ToInt32(t);
         }
     
     }

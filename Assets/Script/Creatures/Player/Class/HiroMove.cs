@@ -10,7 +10,7 @@ namespace Assets.Script.Creatures.Player.Class
 
         public CapsuleCollider Collider;
         internal Teleportation Teleportation;
-        const string NameTagEnemys="Enemys";
+    
         private int _speed;
         public int Speed { get => _speed; set => _speed = value; }
 
@@ -33,11 +33,15 @@ namespace Assets.Script.Creatures.Player.Class
             }
             Collider.isTrigger = true;
         }
+        void MoveToTeleportation(Vector3 pos)
+        {
+            transform.root.position = pos;
+        }
+
        
-     
         private void OnTriggerEnter(Collider other)
         {
-            if(other.tag== NameTagEnemys)
+            if(other.tag== ControlerLevel.NameTagEnemys)
             {
 
             }

@@ -9,6 +9,7 @@ public sealed class EnemysAtack : MonoBehaviour,IAtack,IDamage, IInit
     internal  IHP EnemysHP;
     private int _damage;
     public int DamageGive { get => _damage; set => _damage = value; }
+   // internal IID _ID;
 
     public void Atack(IHP hiroHp)
     {

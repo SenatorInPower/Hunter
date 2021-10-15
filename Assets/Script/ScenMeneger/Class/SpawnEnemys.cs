@@ -95,31 +95,61 @@ public class SpawnEnemys : SerializedMonoBehaviour
     private void Awake()
     {
         Init();
+        EnemysCriate();
+    }
+    private void Start()
+    {
+        Spawn();
     }
     private void Init()
     {
         enemysControlsRed = new List<EnemysControl>();
         enemysControlsBlue = new List<EnemysControl>();
     }
-    [Button]
 
+    [Button]
     private void EnemysCriate()
+    {
+        CriateEnemysBlue();
+        CriateEnemysRed();
+       
+    }
+    void Spawn()
     {
         StartCoroutine(SpawnBlue());
         StartCoroutine(SpawnRed());
     }
+    private void CriateEnemysBlue()
+    {
+        for (int i = 0; i < enemysSpawnBlue.Count; i++)
+        {
+            GameObject blue = Instantiate(enemysSpawnBlue.Prefab, enemysSpawnBlue.SpawnPos);
+            EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
+            enemysControl.InitEnemys(blue, enemysBlueStats);
+            enemysControlsBlue.Add(enemysControl);
+            blue.SetActive(false);
 
+        }
+    }
+    private void CriateEnemysRed()
+    {
+        for (int i = 0; i < enemysSpawnRed.Count; i++)
+        {
+            GameObject red = Instantiate(enemysSpawnRed.Prefab, enemysSpawnRed.SpawnPos);
+            EnemysControl enemysControl = red.AddComponent<EnemysControl>();
+            enemysControl.InitEnemys(red, enemysRedStats);
+            enemysControlsRed.Add(enemysControl);
+            red.SetActive(false);
+
+        }
+    }
     private IEnumerator SpawnBlue()
     {
         while (true)
         {
             for (int i = 0; i < enemysSpawnBlue.Count; i++)
             {
-                GameObject blue = Instantiate(enemysSpawnBlue.Prefab, enemysSpawnBlue.SpawnPos);
-                EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
-                enemysControl.InitEnemys(blue, enemysBlueStats);
-                enemysControlsBlue.Add(enemysControl);
-                print(enemysControlsRed.Count);
+                enemysControlsBlue[i].gameObject.SetActive(true);
                 yield return _waitTimeBlue;
             }
         }
@@ -131,11 +161,8 @@ public class SpawnEnemys : SerializedMonoBehaviour
         {
             for (int i = 0; i < enemysSpawnRed.Count; i++)
             {
-                GameObject red = Instantiate(enemysSpawnRed.Prefab, enemysSpawnRed.SpawnPos);
-                EnemysControl enemysControl = red.AddComponent<EnemysControl>();
-                enemysControl.InitEnemys(red, enemysRedStats);
-                enemysControlsRed.Add(enemysControl);
-                print(enemysControlsBlue.Count);
+                enemysControlsRed[i].gameObject.SetActive(true);
+
                 yield return _waitTimeRed;
 
             }
