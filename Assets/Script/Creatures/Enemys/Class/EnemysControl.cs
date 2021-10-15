@@ -1,8 +1,5 @@
 using Assets.Script.Creatures.Interfase;
-using Assets.Script.Creatures.Player.Class;
-using System.Security.Cryptography;
 using UnityEngine;
-using static SpawnHiro;
 
 public class EnemysControl : MonoBehaviour, IID
 {
@@ -14,14 +11,16 @@ public class EnemysControl : MonoBehaviour, IID
     internal IAtack _AtackEnemys;
     private int _IDEnemys;
     public int ID { get => _IDEnemys; set => _IDEnemys = value; }
+    private EnemysTipe _EnemysTipe;
+    public EnemysTipe TipeEnemys { get => _EnemysTipe; set => _EnemysTipe = value; }
 
     internal void InitEnemys(GameObject obj, StatsEnemys enemysStats)
     {
-        
+
         EnemysMove enemysMove = obj.AddComponent<EnemysMove>();
         enemysMove.InitStats(enemysStats.Speed);
         _MoveEnemys = enemysMove;
-       // enemysMove._ID = this.ID;
+        // enemysMove._ID = this.ID;
 
         EnemysHP enemysHP = obj.AddComponent<EnemysHP>();
         enemysHP.InitStats(enemysStats.HP);

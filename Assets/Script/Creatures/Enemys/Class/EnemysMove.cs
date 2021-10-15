@@ -2,12 +2,11 @@ using Assets.Script.Creatures.Interfase;
 using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class EnemysMove : MonoBehaviour,IMove, IInit
+public class EnemysMove : MonoBehaviour, IMove, IInit
 {
+
     public CapsuleCollider Collider;
     private int _speed;
     public int Speed { get => _speed; set => _speed = value; }
@@ -29,15 +28,13 @@ public class EnemysMove : MonoBehaviour,IMove, IInit
         _speed = Convert.ToInt32(t);
     }
 
-    void MovePatchToHiro()
-    {
-
-    }
-    void MoveFromTheBorder()
+    void MovePatchToHiro(Transform hiroPos)
     {
         int hightFlie = UnityEngine.Random.Range(6, 10);
-        transform.DOMove(ControlerLevel.RandomLevelPosition() + Vector3.up * hightFlie, 3);
+        transform.DOMove(ControlerLevel.RandomLevelPosition() + Vector3.up * hightFlie, 3).OnComplete(() => { StartCoroutine(ToHiro(hiroPos)); });
     }
+ 
+    
     IEnumerator ToHiro(Transform hiroPos)
     {
         while (true)
@@ -46,11 +43,16 @@ public class EnemysMove : MonoBehaviour,IMove, IInit
             yield return null;
         }
     }
+    void Dead()
+    {
+        print("Dead");
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == ControlerLevel.NameTagHiro)
         {
-
+            gameObject.SetActive(false);
+            Dead();
         }
     }
 }

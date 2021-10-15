@@ -16,6 +16,7 @@ public struct EnemysSpawn
 {
     public EnemysTipe EnemysTipe;
     public int Count;
+    public int SpawnCount;
     public GameObject Prefab;
     public Transform SpawnPos;
 }
@@ -42,6 +43,12 @@ public class SpawnEnemys : SerializedMonoBehaviour
 
     private static List<EnemysControl> enemysControlsRed;
     private static List<EnemysControl> enemysControlsBlue;
+
+    private int timeSpawnBlue = 5;
+    private int timeSpawnRed = 5;
+    private WaitForSeconds _waitTimeBlue;
+    private WaitForSeconds _waitTimeSpawnDelayBlue => new WaitForSeconds(1);
+    private WaitForSeconds _waitTimeRed;
 
     internal List<EnemysControl> EnemysControlsRed()
     {
@@ -90,8 +97,7 @@ public class SpawnEnemys : SerializedMonoBehaviour
         }
 
     }
-    private WaitForSeconds _waitTimeBlue => new WaitForSeconds(5);
-    private WaitForSeconds _waitTimeRed => new WaitForSeconds(5);
+  
     private void Awake()
     {
         Init();
@@ -112,7 +118,6 @@ public class SpawnEnemys : SerializedMonoBehaviour
     {
         CriateEnemysBlue();
         CriateEnemysRed();
-       
     }
     void Spawn()
     {
@@ -127,6 +132,7 @@ public class SpawnEnemys : SerializedMonoBehaviour
             EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
             enemysControl.InitEnemys(blue, enemysBlueStats);
             enemysControlsBlue.Add(enemysControl);
+            enemysControl.TipeEnemys = EnemysTipe.Blue;
             blue.SetActive(false);
 
         }
@@ -139,36 +145,58 @@ public class SpawnEnemys : SerializedMonoBehaviour
             EnemysControl enemysControl = red.AddComponent<EnemysControl>();
             enemysControl.InitEnemys(red, enemysRedStats);
             enemysControlsRed.Add(enemysControl);
+            enemysControl.TipeEnemys = EnemysTipe.Red;
+
             red.SetActive(false);
 
         }
     }
     private IEnumerator SpawnBlue()
     {
+        _waitTimeBlue = new WaitForSeconds(timeSpawnBlue);
         while (true)
         {
-            for (int i = 0; i < enemysSpawnBlue.Count; i++)
+            for (int allEnemys = 0; allEnemys < enemysSpawnBlue.Count; allEnemys++)
             {
-                enemysControlsBlue[i].gameObject.SetActive(true);
+                for (int spawbEnemys = 0; spawbEnemys < enemysSpawnBlue.SpawnCount; spawbEnemys++)
+                {
+                    enemysControlsBlue[allEnemys].transform.position = enemysSpawnBlue.SpawnPos.position;
+                    enemysControlsBlue[allEnemys].gameObject.SetActive(true);
+                    yield return _waitTimeSpawnDelayBlue;
+
+                }
+
+
                 yield return _waitTimeBlue;
+
+                if (timeSpawnBlue >= 2)
+                {
+                    --timeSpawnBlue;
+                }
+                _waitTimeBlue = new WaitForSeconds(timeSpawnBlue);
             }
+          
         }
     }
 
     private IEnumerator SpawnRed()
     {
+        _waitTimeRed = new WaitForSeconds(5);
         while (true)
         {
             for (int i = 0; i < enemysSpawnRed.Count; i++)
             {
+                enemysControlsRed[i].transform.position = enemysSpawnRed.SpawnPos.position;
                 enemysControlsRed[i].gameObject.SetActive(true);
 
                 yield return _waitTimeRed;
 
+                if (timeSpawnRed > 2)
+                {
+                    --timeSpawnRed;
+                }
+                _waitTimeBlue = new WaitForSeconds(timeSpawnRed);
             }
-
-
-
         }
     }
 }

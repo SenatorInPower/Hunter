@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace Assets.Script.Creatures.Interfase
+﻿namespace Assets.Script.Creatures.Interfase
 {
-    public interface IID 
+    public interface IID
     {
-
-      public int ID {  get; set; }
+        public EnemysTipe TipeEnemys { get; set; }
+        public int ID { get; set; }
     }
 }

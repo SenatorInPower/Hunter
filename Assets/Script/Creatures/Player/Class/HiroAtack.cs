@@ -21,7 +21,7 @@ namespace Assets.Script.Creatures.Player.Class
         public void Atack(IHP enemysHp)
         {
             enemysHp.HP -= _damage;
-
+            
 
         }
        internal float ChensRandom()

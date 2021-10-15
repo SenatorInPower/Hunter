@@ -16,9 +16,13 @@ public sealed class EnemysAtack : MonoBehaviour,IAtack,IDamage, IInit
         
     }
 
-    public void AtackOut(int damage)
+    public void AtackOut(int damage, Action<int> addDeadEnergy)
     {
         EnemysHP.HP -= damage;
+        if(EnemysHP.HP <= 0)
+        {
+            addDeadEnergy.Invoke(50);
+        }
     }
 
     public void InitStats<T>(T t)
