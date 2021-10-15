@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Assets.Script.Creatures.Enemys.Class
 {
-    public abstract class EnemysAtack : MonoBehaviour, IAtack, IDamage, IInit
+    public abstract class EnemysAtack : EnemysControl, IAtack, IDamage, IInit
     {
-        internal IHP EnemysHP;
+
+       
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
         // internal IID _ID;
@@ -17,9 +18,14 @@ namespace Assets.Script.Creatures.Enemys.Class
 
         }
 
+        public void AtackAction()
+        {
+           
+        }
+
         public void AtackOut(int damage)
         {
-            EnemysHP.HP -= damage;
+            _HPEnemys.HP -= damage;
            
         }
 

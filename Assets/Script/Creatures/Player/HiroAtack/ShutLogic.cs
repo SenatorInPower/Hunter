@@ -6,6 +6,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
 {
     public partial class PullLogic
     {
+       
         public void Shut()
         {
             if (countBollShut > pull.Count-1)
@@ -20,7 +21,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         }
         void Damage(Boll boll, EnemysAtack enemysAtack )
         {
-            atackHiro.Atack(enemysAtack.EnemysHP);
+            atackHiro.Atack(enemysAtack._HPEnemys);
             enemysAtack.AtackOut(boll.Damage);
             float Chens = Random.Range(atackHiro.ChensRandom(), 100);
 

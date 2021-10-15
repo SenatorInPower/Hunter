@@ -30,7 +30,7 @@ public class EnemysControl : MonoBehaviour/*, IID*/
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtack>();
         enemysAtack.InitStats(enemysStats.Demage);
         _AtackEnemys = enemysAtack;
-        enemysAtack.EnemysHP = enemysHP;
+        
         //enemysAtack._ID = this.ID;
 
        // _IDEnemys++;
@@ -51,7 +51,7 @@ public class EnemysControl : MonoBehaviour/*, IID*/
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtack>();
         enemysAtack.InitStats(enemysStats.Demage);
         _AtackEnemys = enemysAtack;
-        enemysAtack.EnemysHP = enemysHP;
+       
         //enemysAtack._ID = this.ID;
 
       //  _IDEnemys++;

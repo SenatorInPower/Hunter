@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemysHP : MonoBehaviour,IHP, IInit
+public class EnemysHP : EnemysControl, IHP, IInit
 {
     internal GameObject effectDead;
     private int _HP;

@@ -1,5 +1,5 @@
-using Assets.Script.Creatures.Player.Class;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +8,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
 {
     public partial class PullLogic : SerializedMonoBehaviour
     {
+        
         [SerializeField]
         private GameObject Boll;
         [SerializeField]
@@ -16,7 +17,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         private int BollCount = 10;
 
         private List<Boll> pull;
-        int countBollShut=1;
+        private int countBollShut = 1;
         void Init()
         {
             pull = new List<Boll>();
@@ -31,7 +32,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
                 Boll objectBoll = Bools.GetComponent<Boll>();
                 pull.Add(objectBoll);
                 Bools.SetActive(false);
-              
+
                 objectBoll.Damage = atackHiro.DamageGive;
                 objectBoll.BollCollision += Damage;
 
@@ -57,6 +58,6 @@ namespace Assets.Script.Creatures.Player.HiroAtack
 
 
 
-   
+
     }
 }

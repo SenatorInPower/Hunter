@@ -391,6 +391,9 @@ MonoBehaviour:
     - Name: Count
       Entry: 3
       Data: 0
+    - Name: SpawnCount
+      Entry: 3
+      Data: 0
     - Name: Prefab
       Entry: 6
       Data: 
@@ -407,6 +410,9 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: Count
+      Entry: 3
+      Data: 0
+    - Name: SpawnCount
       Entry: 3
       Data: 0
     - Name: Prefab
@@ -1958,9 +1964,16 @@ MonoBehaviour:
     - Name: Speed
       Entry: 3
       Data: 10
+    - Name: Ultimate
+      Entry: 6
+      Data: 
+    - Name: Teleport
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
+  AbilityHiro: {fileID: 0}
   PosSpawner: {fileID: 1133675572}
   hiroPrefab: {fileID: 8977572685814558260, guid: bd9da5827d0f19241884801cae3cfe4c,
     type: 3}

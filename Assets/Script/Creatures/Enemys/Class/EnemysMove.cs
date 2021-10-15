@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine;
 namespace Assets.Script.Creatures.Enemys.Class
 {
-    public abstract class EnemysMove : MonoBehaviour, IMove, IInit
+    public abstract class EnemysMove : EnemysControl, IMove, IInit
     {
 
         protected CapsuleCollider Collider;

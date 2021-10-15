@@ -8,13 +8,14 @@ public struct StatsHiro
     public int Demage;
     public int Energy;
     public int Speed;
-    public Action<GameObject> Ultimate;
-    public Action<Transform> Teleport;
+    internal Action<GameObject> Teleport;
+    internal Action<GameObject> Ult;
 }
-public  class SpawnHiro: SerializedMonoBehaviour
+public class SpawnHiro : SerializedMonoBehaviour
 {
-    public Ability AbilityHiro;
-    
+
+    public UIAction UITeleport;
+    public UIAction UIUlt;
 
     [InfoBox("Select Stats value.", InfoMessageType.Info)]
 
@@ -24,14 +25,18 @@ public  class SpawnHiro: SerializedMonoBehaviour
     private GameObject hiroPrefab;
     [SerializeField]
     private StatsHiro HiroStats;
-   
-    
 
+
+    void InitUI()
+    {
+        UIUlt.action += HiroStats.Ult;
+        UITeleport.action += HiroStats.Teleport;
+    }
+  
     [Button]
     void HiroCreate()
     {
-        HiroStats.Ultimate = AbilityHiro._Ultimate;
-        HiroStats.Teleport = AbilityHiro._Teleportation;
+
         GameObject Hiro = Instantiate(hiroPrefab, PosSpawner);
         HiroControl.InitHiro(Hiro, HiroStats);
         DestroyImmediate(gameObject);

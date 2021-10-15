@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Script.Creatures.Enemys.Class
@@ -6,16 +7,13 @@ namespace Assets.Script.Creatures.Enemys.Class
     public class EnemysMoveBlue : EnemysMove
     {
 
-        // Use this for initialization
-        void Start()
+        void MovePatch()
         {
+            int hightFlie = UnityEngine.Random.Range(6, 10);
+            Sequence twin = DOTween.Sequence();
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            twin.Append(transform.DOMove(ControlerLevel.RandomLevelPosition() + Vector3.up * hightFlie, 3) );
+            
         }
     }
 }

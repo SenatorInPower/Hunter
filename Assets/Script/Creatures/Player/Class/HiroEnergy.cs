@@ -9,16 +9,28 @@ namespace Assets.Script.Creatures.Player.Class
     {
         internal Action<GameObject> Ultimate;
         private int _energy;
-        public int Energy { get => _energy; set => _energy=value; }
+        public int Energy { get =>Mathf.Clamp(_energy, 0, 100); set => _energy=value; }
 
+        private void OnEnable()
+        {
+            Ultimate += UltimateHiro;
+        }
+        private void OnDisable()
+        {
+            Ultimate = UltimateHiro;
+
+        }
         public override void InitStats<T>(T t)
         {
             _energy = Convert.ToInt32(t);
         }
        
-       public void UltimateHiro(GameObject UltPrefab)
+       public void UltimateHiro(GameObject particle)
         {
-            Instantiate(UltPrefab, transform);
+            if (particle != null)
+            {
+
+            }
         }
     }
 }

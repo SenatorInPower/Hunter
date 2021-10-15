@@ -1,7 +1,5 @@
 using Assets.Script.Creatures.Interfase;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace Assets.Script.Creatures.Player.Class
 {
@@ -9,8 +7,17 @@ namespace Assets.Script.Creatures.Player.Class
     {
 
         public CapsuleCollider Collider;
-        internal Action<Transform> Teleportation;
+        internal Action<GameObject> Teleportation;
 
+        private void OnEnable()
+        {
+            Teleportation += MoveToTeleportation;
+        }
+        private void OnDisable()
+        {
+            Teleportation -= MoveToTeleportation;
+
+        }
 
         private int _speed;
         public int Speed { get => _speed; set => _speed = value; }
@@ -21,28 +28,31 @@ namespace Assets.Script.Creatures.Player.Class
         {
             _speed = Convert.ToInt32(speed);
 
-            
+
         }
         private void Awake()
         {
             Collider = gameObject.GetComponent<CapsuleCollider>();
-           
-            if(Collider == null)
+
+            if (Collider == null)
             {
                 gameObject.AddComponent<CapsuleCollider>().isTrigger = true;
                 Collider = gameObject.GetComponent<CapsuleCollider>();
             }
             Collider.isTrigger = true;
         }
-        void MoveToTeleportation(Vector3 pos)
+        void MoveToTeleportation(GameObject particle)
         {
-            transform.root.position = pos;
+            if (particle != null)
+            {
+
+            }
         }
 
-       
+
         private void OnTriggerEnter(Collider other)
         {
-            if(other.tag== ControlerLevel.NameTagEnemys)
+            if (other.tag == ControlerLevel.NameTagEnemys)
             {
 
             }

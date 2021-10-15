@@ -8,5 +8,7 @@ namespace Assets.Script.Creatures.Interfase
     {
         public void AtackOut(int damage);
         public void Atack(IHP HP);
+
+        public void AtackAction();
     }
 }

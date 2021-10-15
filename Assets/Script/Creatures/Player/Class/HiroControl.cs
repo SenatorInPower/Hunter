@@ -1,4 +1,5 @@
 using Assets.Script.Creatures.Interfase;
+using Assets.Script.Creatures.Player.HiroAtack;
 using UnityEngine;
 
 namespace Assets.Script.Creatures.Player.Class
@@ -35,7 +36,7 @@ namespace Assets.Script.Creatures.Player.Class
 
         internal static void InitHiro(GameObject obj, StatsHiro hiroStats)
         {
-
+           
 
             HiroMove hiroMove = obj.AddComponent<HiroMove>();
             hiroMove.InitStats(hiroStats.Speed);           
@@ -49,12 +50,15 @@ namespace Assets.Script.Creatures.Player.Class
             HiroEnergy hiroEnergy = obj.AddComponent<HiroEnergy>();
             hiroEnergy.InitStats(hiroStats.Energy);
             _EnergyHiro = hiroEnergy;
-            hiroEnergy.Ultimate = hiroStats.Ultimate ;
+            hiroEnergy.Ultimate = hiroStats.Ult ;
 
             HiroAtack hiroAtack = obj.AddComponent<HiroAtack>();
             hiroAtack.InitStats(hiroStats.Demage);
             _AtackHiro = hiroAtack;
-            
+            hiroAtack.ShutHiro += obj.GetComponent<PullLogic>().Shut;
+         
+
+
 
         }
 

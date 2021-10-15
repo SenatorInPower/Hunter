@@ -8,11 +8,12 @@ namespace Assets.Script.Creatures.Player.Class
 {
     public sealed class HiroAtack : HiroControl, IAtack, IDamage
     {
+        internal Action ShutHiro;
         internal IEnergy Energy;
         internal Transform TargetShut;
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
-
+        
 
         public override void InitStats<T>(T t)
         {
@@ -54,7 +55,10 @@ namespace Assets.Script.Creatures.Player.Class
             _HPHiro.HP -= damage;
         }
 
-       
+        public void AtackAction()
+        {
+            ShutHiro.Invoke();
+        }
     }
    
 }
