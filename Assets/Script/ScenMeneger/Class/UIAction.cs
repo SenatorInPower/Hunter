@@ -1,16 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using DG.Tweening;
 using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UIAction: MonoBehaviour, IPointerDownHandler
+public class UIAction : MonoBehaviour, IPointerDownHandler
 {
     public GameObject particle;
+    public int TimeReset;
+
     internal Action<GameObject> action;
+    bool Eneble = true;
     public void OnPointerDown(PointerEventData eventData)
     {
-        action.Invoke(particle);
+        if (Eneble)
+        {           
+            DOTween.To(() => TimeReset, x => TimeReset = x, 3, 3).OnComplete(() => Eneble = true);
+
+            action.Invoke(particle);
+
+            Eneble = false;
+        }
     }
 }

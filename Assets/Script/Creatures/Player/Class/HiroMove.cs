@@ -1,4 +1,5 @@
 using Assets.Script.Creatures.Interfase;
+using DG.Tweening;
 using System;
 using UnityEngine;
 namespace Assets.Script.Creatures.Player.Class
@@ -45,7 +46,8 @@ namespace Assets.Script.Creatures.Player.Class
         {
             if (particle != null)
             {
-
+                Vector3 moveTo = gameObject.transform.position + Vector3.forward * 5;
+                transform.DOMove(moveTo, 1);
             }
         }
 
@@ -55,6 +57,10 @@ namespace Assets.Script.Creatures.Player.Class
             if (other.tag == ControlerLevel.NameTagEnemys)
             {
 
+            }
+            else if (other.tag == ControlerLevel.NameTagArea)
+            {
+                transform.position = ControlerLevel.RandomLevelPosition();
             }
         }
     }

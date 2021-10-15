@@ -5,20 +5,13 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerExit(Collider other)
     {
-
+        print("exit");
     }
-    GameObject AtackNearest(List<GameObject> enemys)
+    private void OnTriggerEnter(Collider other)
     {
-       return enemys.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).FirstOrDefault();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        print("enter");
 
     }
 }
