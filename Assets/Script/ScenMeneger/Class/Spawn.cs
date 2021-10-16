@@ -10,6 +10,8 @@ namespace Assets.Script.ScenMeneger.Class
 
         public AbilityAction UITeleport;
         public AbilityAction UIUlt;
+        public MoveAction MoveAction;
+        public ShutAction ShutAction;
         private void Awake()
         {
             Criate();
@@ -17,9 +19,9 @@ namespace Assets.Script.ScenMeneger.Class
         void Criate()
         {
             GameObject hiro;
-            CriateHiro.InitUI(UITeleport, UIUlt);
+            CriateHiro.InitUI(UITeleport, UIUlt,MoveAction, ShutAction);
             CriateHiro.HiroCreate(out hiro);
-
+            MoveAction.Hiro = hiro.transform;
             SpawnEnemys.EnemysCriate(hiro.transform);
             SpawnEnemys.InitUI(UIUlt);
         }

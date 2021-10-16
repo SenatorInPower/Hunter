@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 45182981}
   - component: {fileID: 45182983}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Teleport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
-  TimeReset: 0
+  TimeReset: 5
 --- !u!1 &50620581
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 262547563}
+  - component: {fileID: 262547564}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -771,6 +772,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262547564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262547562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca2b1e342d39894b989854c968d0878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnEnemys: {fileID: 61686386}
+  CriateHiro: {fileID: 1239284472}
+  UITeleport: {fileID: 0}
+  UIUlt: {fileID: 0}
 --- !u!1 &318232693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,7 +1708,7 @@ GameObject:
   - component: {fileID: 1065554054}
   - component: {fileID: 1065554056}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Ult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1769,7 +1786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
-  TimeReset: 0
+  TimeReset: 5
 --- !u!1 &1133675571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,8 +1987,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  UITeleport: {fileID: 0}
-  UIUlt: {fileID: 0}
   PosSpawner: {fileID: 1133675572}
   hiroPrefab: {fileID: 8977572685814558260, guid: bd9da5827d0f19241884801cae3cfe4c,
     type: 3}

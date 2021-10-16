@@ -55,8 +55,9 @@ namespace Assets.Script.Creatures.Player.Class
             HiroAtack hiroAtack = obj.AddComponent<HiroAtack>();
             hiroAtack.InitStats(hiroStats.Demage);
             _AtackHiro = hiroAtack;
+            hiroStats.Shut += hiroAtack.ShutHiro;
             hiroAtack.ShutHiro += obj.GetComponent<PullLogic>().Shut;
-         
+            hiroAtack.TargetShut = hiroStats.targetShutPoint;
 
 
 
