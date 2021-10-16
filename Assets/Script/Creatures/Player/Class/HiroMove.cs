@@ -46,9 +46,11 @@ namespace Assets.Script.Creatures.Player.Class
         {
             if (particle != null)
             {
-                Vector3 moveTo = gameObject.transform.position + Vector3.forward * 5;
-                transform.DOMove(moveTo, 1);
+                Instantiate(particle, transform);
+               
             }
+            Vector3 moveTo = gameObject.transform.position + Vector3.forward * 5;
+            transform.DOMove(moveTo, 1);
         }
 
 
@@ -63,5 +65,7 @@ namespace Assets.Script.Creatures.Player.Class
                 transform.position = ControlerLevel.RandomLevelPosition();
             }
         }
+
+      
     }
 }

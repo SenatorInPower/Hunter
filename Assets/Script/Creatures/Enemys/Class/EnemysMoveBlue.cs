@@ -6,6 +6,7 @@ namespace Assets.Script.Creatures.Enemys.Class
 {
     public class EnemysMoveBlue : EnemysMove
     {
+      
 
         void MovePatch()
         {

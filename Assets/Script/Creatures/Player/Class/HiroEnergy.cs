@@ -29,7 +29,18 @@ namespace Assets.Script.Creatures.Player.Class
         {
             if (particle != null)
             {
-
+                if (Energy > 99)
+                {
+                    Instantiate(particle, transform);
+                    Energy = 0;
+                }
+            }
+            else
+            {
+                if (Energy > 99)
+                {              
+                    Energy = 0;
+                }
             }
         }
     }

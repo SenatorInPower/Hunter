@@ -14,8 +14,7 @@ public struct StatsHiro
 public class SpawnHiro : SerializedMonoBehaviour
 {
 
-    public UIAction UITeleport;
-    public UIAction UIUlt;
+    
 
     [InfoBox("Select Stats value.", InfoMessageType.Info)]
 
@@ -27,17 +26,17 @@ public class SpawnHiro : SerializedMonoBehaviour
     private StatsHiro HiroStats;
 
 
-    void InitUI()
+   internal void InitUI(AbilityAction UITeleport, AbilityAction UIUlt)
     {
         UIUlt.action += HiroStats.Ult;
         UITeleport.action += HiroStats.Teleport;
     }
   
-    [Button]
-    void HiroCreate()
+    //[Button]
+   internal void HiroCreate(out GameObject Hiro)
     {
 
-        GameObject Hiro = Instantiate(hiroPrefab, PosSpawner);
+        Hiro = Instantiate(hiroPrefab, PosSpawner);
         HiroControl.InitHiro(Hiro, HiroStats);
         DestroyImmediate(gameObject);
 

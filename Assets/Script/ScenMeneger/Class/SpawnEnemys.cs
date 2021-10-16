@@ -19,17 +19,20 @@ public struct EnemysSpawn
     public int SpawnCount;
     public GameObject Prefab;
     public Transform SpawnPos;
+    
 }
 public struct StatsEnemys
 {
     public int HP;
     public int Demage;
     public int Speed;
+    
 
 }
 public  class SpawnEnemys : SerializedMonoBehaviour
 {
-    
+   
+
     [InfoBox("Select Spawn and Stats value.", InfoMessageType.Info)]
     [NonSerialized, OdinSerialize]
     private EnemysSpawn enemysSpawnRed;
@@ -40,6 +43,22 @@ public  class SpawnEnemys : SerializedMonoBehaviour
     [NonSerialized, OdinSerialize]
     private StatsEnemys enemysBlueStats;
 
+    public void  InitUI(AbilityAction UIUlt)
+    {
+        UIUlt.action += DestoryEnemys;
+    }
+   
+    public void DestoryEnemys(GameObject parical)
+    {
+        foreach (EnemysControl item in enemysControlsRed)
+        {
+            item.gameObject.SetActive(false);
+        }
+        foreach (EnemysControl item in enemysControlsBlue)
+        {
+            item.gameObject.SetActive(false);
+        }
+    }
 
     private static List<EnemysControl> enemysControlsRed;
     private static List<EnemysControl> enemysControlsBlue;
@@ -50,6 +69,14 @@ public  class SpawnEnemys : SerializedMonoBehaviour
     private WaitForSeconds _waitTimeSpawnDelayRed => new WaitForSeconds(1);
     private WaitForSeconds _waitTimeBlue;
 
+    internal int CountRed()
+    {
+        return enemysControlsRed.Count;
+    }
+    internal int CountBlue()
+    {
+        return enemysControlsBlue.Count;
+    }
     internal List<EnemysControl> EnemysControlsRed()
     {
         return enemysControlsRed;
@@ -98,11 +125,7 @@ public  class SpawnEnemys : SerializedMonoBehaviour
 
     }
   
-    private void Awake()
-    {
-        Init();
-        EnemysCriate();
-    }
+  
     private void Start()
     {
         Spawn();
@@ -113,37 +136,39 @@ public  class SpawnEnemys : SerializedMonoBehaviour
         enemysControlsBlue = new List<EnemysControl>();
     }
 
-    [Button]
-    private void EnemysCriate()
+    //[Button]
+    internal void EnemysCriate(Transform hiro)
     {
-        CriateEnemysBlue();
-        CriateEnemysRed();
+        Init();
+        CriateEnemysBlue(hiro);
+        CriateEnemysRed(hiro);
+     
     }
     void Spawn()
     {
         StartCoroutine(SpawnBlue());
         StartCoroutine(SpawnRed());
     }
-    private void CriateEnemysRed()
+    private void CriateEnemysRed(Transform hiro)
     {
         for (int i = 0; i < enemysSpawnRed.Count; i++)
         {
             GameObject red = Instantiate(enemysSpawnRed.Prefab, enemysSpawnRed.SpawnPos);
             EnemysControl enemysControl = red.AddComponent<EnemysControl>();
-            enemysControl.InitEnemysRed(red, enemysRedStats);
+            enemysControl.InitEnemysRed(red, enemysRedStats, hiro);
             enemysControlsRed.Add(enemysControl);
             enemysControl.TipeEnemys = EnemysTipe.Red;
             red.SetActive(false);
 
         }
     }
-    private void CriateEnemysBlue()
+    private void CriateEnemysBlue(Transform hiro)
     {
         for (int i = 0; i < enemysSpawnBlue.Count; i++)
         {
             GameObject blue = Instantiate(enemysSpawnBlue.Prefab, enemysSpawnBlue.SpawnPos);
             EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
-            enemysControl.InitEnemysBlue(blue, enemysBlueStats);
+            enemysControl.InitEnemysBlue(blue, enemysBlueStats, hiro);
             enemysControlsBlue.Add(enemysControl);
             enemysControl.TipeEnemys = EnemysTipe.Blue;
             blue.SetActive(false);

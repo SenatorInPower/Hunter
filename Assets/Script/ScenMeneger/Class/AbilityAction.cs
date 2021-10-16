@@ -3,8 +3,9 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIAction : MonoBehaviour, IPointerDownHandler
+public class AbilityAction: MonoBehaviour, IPointerDownHandler
 {
+  
     public GameObject particle;
     public int TimeReset;
 

@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Assets.Script.Creatures.Interfase;
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -6,7 +7,10 @@ namespace Assets.Script.Creatures.Enemys.Class
 {
     public class EnemysMoveRed : EnemysMove
     {
-        void MovePatchToHiro(Transform hiroPos)
+    
+
+
+        internal void MovePatchToHiro(Transform hiroPos)
         {
             int hightFlie = UnityEngine.Random.Range(6, 10);
             Sequence twin = DOTween.Sequence();
@@ -23,17 +27,6 @@ namespace Assets.Script.Creatures.Enemys.Class
                 yield return null;
             }
         }
-        void Dead()
-        {
-            print("Dead");
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == ControlerLevel.NameTagHiro)
-            {
-                gameObject.SetActive(false);
-                Dead();
-            }
-        }
+
     }
 }
