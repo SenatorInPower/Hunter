@@ -15,9 +15,12 @@ namespace Assets.Script.Creatures.Enemys.Class
       
         public void AtackAction(Action fin)
         {
-            StartCoroutine(AtackPhase(HiroTransform,fin));
+          //  StartCoroutine(AtackPhase(HiroTransform,fin));
+            BollPull.Shut(HiroTransform);
 
         }
+
+       
         IEnumerator AtackPhase(Transform hiro,Action fin)
         {
             while (true)

@@ -9,18 +9,11 @@ namespace Assets.Script.Creatures.Enemys.Class
     {
         private  int _speed;
         public int Speed { get => _speed; set => _speed = value; }
-      
-
-        //internal IID _ID;
-
-
-
 
         public void InitStats<T>(T t)
         {
             _speed = Convert.ToInt32(t);
         }
-
 
     }
 }

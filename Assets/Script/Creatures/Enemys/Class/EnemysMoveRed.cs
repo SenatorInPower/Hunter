@@ -6,6 +6,10 @@ namespace Assets.Script.Creatures.Enemys.Class
 {
     public class EnemysMoveRed : EnemysMove
     {
+        private void OnEnable()
+        {
+            MovePatchToHiro(HiroTransform);
+        }
         internal void MovePatchToHiro(Transform hiroPos)
         {
             int hightFlie = UnityEngine.Random.Range(6, 10);

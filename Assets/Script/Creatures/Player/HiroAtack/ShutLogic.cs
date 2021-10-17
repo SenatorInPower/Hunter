@@ -1,5 +1,4 @@
-﻿using Assets.Script.Creatures.Enemys.Class;
-using Assets.Script.Creatures.Interfase;
+﻿using Assets.Script.Creatures.Interfase;
 using UnityEngine;
 
 namespace Assets.Script.Creatures.Player.HiroAtack
@@ -13,7 +12,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
 
         public void Shut()
         {
-            if (countBollShut > pull.Count-1)
+            if (countBollShut > pull.Count - 1)
             {
                 countBollShut = 0;
 
@@ -21,9 +20,9 @@ namespace Assets.Script.Creatures.Player.HiroAtack
             pull[countBollShut].transform.position = atackHiro.TargetShut.position;
             pull[countBollShut].gameObject.SetActive(true);
             countBollShut++;
-           
+
         }
-        void Damage(Boll boll, IAtack enemysAtack )
+        void Damage(Boll boll, IAtack enemysAtack)
         {
             atackHiro.Atack(null);
             enemysAtack.AtackOut(boll.Damage);
