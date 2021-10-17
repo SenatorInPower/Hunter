@@ -1,15 +1,23 @@
 using Assets.Script.Creatures.Enemys.Class;
 using Assets.Script.Creatures.Interfase;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class EnemysControl : MonoBehaviour/*, IID*/, IHiroStats
+public class EnemysControl : SerializedMonoBehaviour/*, IID*/, IHiroStats
 {
 
-    //   public abstract void InitStats<T>(T t);
+   
+ 
     internal IMove _MoveEnemys;
+ 
+
     internal IHP _HPEnemys;
-    internal IEnergy _EnergyEnemys;
+
+
+    //internal IEnergy _EnergyEnemys;
+  
     internal IAtack _AtackEnemys;
+   
     //internal IHiroStats _HiroStats;
     internal IAtackAction _AtackAction;
     //private int _IDEnemys;

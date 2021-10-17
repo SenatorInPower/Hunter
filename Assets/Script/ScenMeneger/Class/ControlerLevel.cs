@@ -3,7 +3,7 @@ using UnityEngine;
 public class ControlerLevel 
 {
     public const string NameTagEnemys = "Enemys";
-    public const string NameTagHiro = "Hiro";
+    public const string NameTagHiro = "Player";
     public const string NameTagArea = "Area";
    
     static Vector3 centerLevel = new Vector3(0, 0.11f, 0);

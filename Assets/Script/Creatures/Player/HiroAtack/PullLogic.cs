@@ -49,13 +49,13 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         private void LoadScen(Scene arg0, LoadSceneMode arg1)
         {
 
-            if (pull != null)
-            {
-                foreach (var item in pull)
-                {
-                    item.GetComponent<Boll>().BollCollision -= Damage;
-                }
-            }
+            //if (pull != null)
+            //{
+            //    foreach (var item in pull)
+            //    {
+            //        item.GetComponent<Boll>().BollCollision -= Damage;
+            //    }
+            //}
 
         }
 

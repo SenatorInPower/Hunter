@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: 5369008595296742945}
   - component: {fileID: 5970570078724522731}
   - component: {fileID: 2624739257624618675}
+  - component: {fileID: 7976369878102869161}
   m_Layer: 0
   m_Name: Blue
   m_TagString: Enemys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5369008595296742972
 Transform:
   m_ObjectHideFlags: 0
@@ -138,3 +139,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7976369878102869161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369008595296742944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6676874b7ef10be4fa1d8114ce52564b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Boll: {fileID: 3387517200085852779, guid: 5b0db41b1ad8d6d4288b12d3aa679aae, type: 3}
+  BollCount: 3

@@ -5,7 +5,7 @@ namespace Assets.Script.Creatures.Enemys.Class
 {
     public abstract class EnemysAtack : EnemysControl, IAtack, IDamage, IInit, IHiroStats
     {
-
+        
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
       

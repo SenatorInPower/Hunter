@@ -4913,13 +4913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be50c2e39119e7a4ca62f2062a8a7353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 6
-  R: 90
-  _r: 0
-  centerPos: {x: 0, y: 0}
-  _h: 0
-  _v: 0
-  testStopRotatifRoward: 1
 --- !u!114 &7082426025908362532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4968,13 +4961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8158f9ef00b9f204b832b9122b2bf0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 6
-  R: 90
-  _r: 0
-  centerPos: {x: 0, y: 0}
-  _h: 0
-  _v: 0
-  testStopRotatifRoward: 1
 --- !u!114 &7082426025908364878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4987,7 +4973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 195009eadfc54174a9def3d575c7b142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fire: 0
 --- !u!114 &7082426025908369128
 MonoBehaviour:
   m_ObjectHideFlags: 0
