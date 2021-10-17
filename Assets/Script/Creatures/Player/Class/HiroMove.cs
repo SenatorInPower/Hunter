@@ -52,17 +52,21 @@ namespace Assets.Script.Creatures.Player.Class
             Vector3 moveTo = gameObject.transform.position + Vector3.forward * 5;
             transform.DOMove(moveTo, 1);
         }
-
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == ControlerLevel.NameTagArea)
+            {
+                Vector3 posHiroTeleport= ControlerLevel.RandomLevelPosition();
+                transform.position = posHiroTeleport;
+            //    print(posHiroTeleport);
+            }
+        }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == ControlerLevel.NameTagEnemys)
             {
 
-            }
-            else if (other.tag == ControlerLevel.NameTagArea)
-            {
-                transform.position = ControlerLevel.RandomLevelPosition();
             }
         }
 

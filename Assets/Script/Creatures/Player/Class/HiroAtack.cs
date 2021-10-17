@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Script.Creatures.Player.Class
 {
     public sealed class HiroAtack : HiroControl, IAtack, IDamage
     {
-        internal Action ShutHiro;
+        internal UnityAction ShutHiro;
         internal IEnergy Energy;
         internal Transform TargetShut;
         private int _damage;
@@ -57,7 +58,7 @@ namespace Assets.Script.Creatures.Player.Class
 
         public void AtackAction()
         {
-            ShutHiro.Invoke();
+           // ShutHiro.Invoke();
         }
     }
    

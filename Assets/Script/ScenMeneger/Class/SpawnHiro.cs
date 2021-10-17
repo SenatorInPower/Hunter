@@ -1,8 +1,12 @@
 using Assets.Script.Creatures.Player.Class;
+using Assets.Script.Creatures.Player.HiroAtack;
 using Assets.Script.ScenMeneger.Class;
+using Cinemachine;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
+
 public struct StatsHiro
 {
     public int HP;
@@ -10,13 +14,14 @@ public struct StatsHiro
     public int Energy;
     public int Speed;
     internal Transform targetShutPoint;
-    internal Action Shut;
+    internal UnityAction Shut;
     internal Action<GameObject> Teleport;
     internal Action<GameObject> Ult;
 
 }
 public class SpawnHiro : SerializedMonoBehaviour
 {
+    public CinemachineVirtualCamera virtualCamera;
     [InfoBox("Select Stats value.", InfoMessageType.Info)]
 
     [SerializeField]
@@ -32,17 +37,26 @@ public class SpawnHiro : SerializedMonoBehaviour
         UIUlt.action += HiroStats.Ult;
         UITeleport.action += HiroStats.Teleport;
         moveAction.Init(HiroStats.Speed);
+        ShutAction.InitShut(HiroStats.Shut);
         HiroStats.targetShutPoint = ShutAction.ShutPoint;
-        HiroStats.Shut = ShutAction.ShutButton;
-    }
 
+    }
+    internal void InitCamera(Transform hiro)
+    {
+        virtualCamera.LookAt = hiro;
+        virtualCamera.Follow = hiro;
+        CinemachineTransposer cinemashin = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+        cinemashin.m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
+        cinemashin.m_FollowOffset = new Vector3(0f, 0.5f, -1.3f);
+    }
     //[Button]
     internal void HiroCreate(out GameObject Hiro)
     {
 
         Hiro = Instantiate(hiroPrefab, PosSpawner);
-        HiroControl.InitHiro(Hiro, HiroStats);
-        DestroyImmediate(gameObject);
+        PullLogic pullLogic = Hiro.GetComponent<PullLogic>();
+        HiroControl.InitHiro(Hiro, HiroStats, pullLogic);
+
 
     }
 }

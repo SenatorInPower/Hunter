@@ -34,7 +34,7 @@ namespace Assets.Script.Creatures.Player.Class
         //}
 
 
-        internal static void InitHiro(GameObject obj, StatsHiro hiroStats)
+        internal static void InitHiro(GameObject obj, StatsHiro hiroStats,PullLogic pullLogic)
         {
            
 
@@ -55,8 +55,10 @@ namespace Assets.Script.Creatures.Player.Class
             HiroAtack hiroAtack = obj.AddComponent<HiroAtack>();
             hiroAtack.InitStats(hiroStats.Demage);
             _AtackHiro = hiroAtack;
-            hiroStats.Shut += hiroAtack.ShutHiro;
-            hiroAtack.ShutHiro += obj.GetComponent<PullLogic>().Shut;
+            pullLogic.atackHiro = hiroAtack;
+            pullLogic.Init();
+            hiroAtack.ShutHiro = hiroStats.Shut;
+            hiroAtack.ShutHiro += pullLogic.Shut;
             hiroAtack.TargetShut = hiroStats.targetShutPoint;
 
 

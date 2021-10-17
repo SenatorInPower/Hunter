@@ -6,7 +6,11 @@ namespace Assets.Script.Creatures.Player.HiroAtack
 {
     public partial class PullLogic
     {
-       
+        private void OnEnable()
+        {
+            print("shut logic eneble");
+        }
+
         public void Shut()
         {
             if (countBollShut > pull.Count-1)
