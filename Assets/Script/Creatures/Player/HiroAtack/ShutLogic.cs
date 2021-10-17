@@ -23,9 +23,9 @@ namespace Assets.Script.Creatures.Player.HiroAtack
             countBollShut++;
            
         }
-        void Damage(Boll boll, EnemysAtack enemysAtack )
+        void Damage(Boll boll, IAtack enemysAtack )
         {
-            atackHiro.Atack(enemysAtack._HPEnemys);
+            atackHiro.Atack(null);
             enemysAtack.AtackOut(boll.Damage);
             float Chens = Random.Range(atackHiro.ChensRandom(), 100);
 

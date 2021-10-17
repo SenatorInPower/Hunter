@@ -1,4 +1,5 @@
 using Assets.Script.Creatures.Enemys.Class;
+using Assets.Script.Creatures.Interfase;
 using Assets.Script.ScenMeneger.Class;
 using System;
 using System.Collections;
@@ -12,7 +13,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         const string EnemysTag = "Enemys";
         const int SpeedBoll = 10;
         internal int Damage;
-        internal Action<Boll, EnemysAtack> BollCollision;
+        internal Action<Boll, IAtack> BollCollision;
         Rigidbody _rigidbody;
 
         private bool _stopMoveUpdate = false;
@@ -36,11 +37,14 @@ namespace Assets.Script.Creatures.Player.HiroAtack
                 yield return null;
             }
         }
-        private void OnCollisionEnter(Collision collision)
+        //private void OnCollisionEnter(Collision collision)
+        //{
+        //}
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.tag == EnemysTag)
+            if (other.gameObject.tag == EnemysTag)
             {
-                BollCollision.Invoke(this, collision.gameObject.GetComponent<EnemysAtack>());
+                BollCollision.Invoke(this, other.gameObject.GetComponent<IAtack>());
 
             }
         }
@@ -75,10 +79,13 @@ namespace Assets.Script.Creatures.Player.HiroAtack
             }
             else
             {
-                if(particleExplou)
-                Instantiate(particleExplou, transform);
-           
-                gameObject.SetActive(false);
+                //if (other.tag == ControlerLevel.NameTagEnemys)
+                //{
+                //    if (particleExplou)
+                //        Instantiate(particleExplou, transform);
+
+                //    other.GetComponent<IAtack>().AtackOut(Damage);
+                //}
 
             }
         }

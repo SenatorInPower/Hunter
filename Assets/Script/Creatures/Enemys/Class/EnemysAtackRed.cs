@@ -1,29 +1,26 @@
 ﻿using Assets.Script.Creatures.Interfase;
-using DG.Tweening;
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Script.Creatures.Enemys.Class
 {
     public class EnemysAtackRed : EnemysAtack, IAtackAction
     {
-        public void AtackAction()
-        {
 
+
+        public void AtackAction(Action fin)
+        {
 
         }
 
-        void Dead()
-        {
-            print("Dead");
-        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == ControlerLevel.NameTagHiro)
             {
-                gameObject.SetActive(false);
-                Dead();
+                _AtackEnemys.Atack(null);  // нуль для того чтобы не тратить время на вытягивание хп героя, хп есть в интерфейсе
+                AtackAction(null);
+                _HPEnemys.Dead();
             }
         }
     }

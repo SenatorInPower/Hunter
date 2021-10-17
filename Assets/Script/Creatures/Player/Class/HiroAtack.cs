@@ -31,19 +31,19 @@ namespace Assets.Script.Creatures.Player.Class
 
         public void Atack(IHP enemysHp)
         {
-            enemysHp.HP -= _damage;
-            if (enemysHp.HP <= 0)
-            {
-                if (enemysHp.MaxHP <50)
-                {
-                    HiroControl._EnergyHiro.Energy += 50;
-                }
-                else
-                {
-                    HiroControl._EnergyHiro.Energy += 15;
+           
+            //if (enemysHp.HP <= 0)
+            //{
+            //    if (enemysHp.MaxHP <50)
+            //    {
+            //        HiroControl._EnergyHiro.Energy += 50;
+            //    }
+            //    else
+            //    {
+            //        HiroControl._EnergyHiro.Energy += 15;
 
-                }
-            }
+            //    }
+            //}
 
         }
        internal float ChensRandom()
@@ -61,7 +61,11 @@ namespace Assets.Script.Creatures.Player.Class
         }
         public void AtackOut(int damage)
         {
-            _HPHiro.HP -= damage;
+            //_HPHiro.HP -= damage;
+            //if(_HPHiro.HP < 1) 
+            //{
+            //    _HPHiro.Dead();
+            //}
         }
 
         public void AtackAction()

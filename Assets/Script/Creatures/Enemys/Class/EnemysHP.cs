@@ -1,14 +1,12 @@
 using Assets.Script.Creatures.Interfase;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemysHP : EnemysControl, IHP, IInit
 {
     internal GameObject effectDead;
     private int _HP;
-    public int HP { get => _HP; set  { _HP = value; if (_HP < 1) { _dead.Invoke(); } }  }
+    public int HP { get => _HP; set { _HP = value; if (_HP < 1) { _dead.Invoke(); } } }
 
     private int _MaxHP;
     public int MaxHP { get => _MaxHP; }
@@ -32,7 +30,10 @@ public class EnemysHP : EnemysControl, IHP, IInit
     }
     void DeadEffect()
     {
-        Instantiate(effectDead, transform.position, Quaternion.identity);
+        if (effectDead)
+        {
+            Instantiate(effectDead, transform.position, Quaternion.identity);
+        }
         gameObject.SetActive(false);
     }
 }

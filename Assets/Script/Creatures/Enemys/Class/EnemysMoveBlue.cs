@@ -8,11 +8,15 @@ namespace Assets.Script.Creatures.Enemys.Class
     public class EnemysMoveBlue : EnemysMove
     {
 
-
-
+        WaitForSeconds waitAtack => new WaitForSeconds(2);
+        WaitForSeconds waitMove => new WaitForSeconds(1);
+        private void OnEnable()
+        {
+            MovePhase();
+        }
 
         [Button]
-     public   void Move()
+        public void Move()
         {
             StartCoroutine(MovePhase());
         }
@@ -21,16 +25,16 @@ namespace Assets.Script.Creatures.Enemys.Class
             transform.DOMove(ControlerLevel.RandomLevelPosition(), time);
         }
 
-       
+
         IEnumerator MovePhase()
         {
             while (true)
             {
                 MoveToRendomPosRadius(3);
-                yield return new WaitForSeconds(3);
-                _AtackAction.AtackAction();
+                yield return waitAtack;
+                _AtackAction.AtackAction(null);
+                yield return waitMove;
 
-                print("gg");
             }
         }
 

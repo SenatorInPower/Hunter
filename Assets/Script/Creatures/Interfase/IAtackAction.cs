@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Script.Creatures.Interfase
 {
     public interface IAtackAction 
     {
-        public void AtackAction();
+        public void AtackAction(Action fin);
     }
 }

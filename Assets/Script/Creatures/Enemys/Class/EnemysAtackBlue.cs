@@ -12,22 +12,20 @@ namespace Assets.Script.Creatures.Enemys.Class
         internal Action<GameObject> _TeleportHiro;
         internal BollPull BollPull;
 
-        public void Atack()
+      
+        public void AtackAction(Action fin)
         {
-            StartCoroutine(AtackPhase(_HiroTransform.HiroTransform));
-        }
-
-        public void AtackAction()
-        {
-            Atack();
+            StartCoroutine(AtackPhase(HiroTransform,fin));
 
         }
-        IEnumerator AtackPhase(Transform hiro)
+        IEnumerator AtackPhase(Transform hiro,Action fin)
         {
             while (true)
             {
 
                 print("stop");
+                fin?.Invoke();
+
                 yield break;
             }
         }
