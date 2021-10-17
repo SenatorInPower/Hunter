@@ -6,23 +6,24 @@ namespace EnemysBoll
 {
     public class Boll : MonoBehaviour
     {
-        public Func<bool, bool> stopTeleportation;
-        private void OnEnable()
-        {
-            stopIfTeleport = false;
-
-            stopTeleportation += StopTP;
-        }
-        private void OnDestroy()
-        {
-            stopTeleportation -= StopTP;
-
-        }
-        bool StopTP(bool stop)
-        {
-            return stopIfTeleport = stop;
-        }
         internal bool stopIfTeleport = false;
+        //public Action stopTeleportation;
+        //private void OnEnable()
+        //{
+        //    stopIfTeleport = false;
+
+        //    stopTeleportation += StopTP;
+        //}
+        //private void OnDestroy()
+        //{
+        //    stopTeleportation -= StopTP;
+
+        //}
+       public   void MissTP()
+        {
+             stopIfTeleport = true;
+        }
+      
         private void MoveToTarget(Transform hiro, GameObject particle)
         {
             Tweener tweener = transform.DOMove(hiro.position, 3).SetSpeedBased(true);
@@ -64,8 +65,12 @@ namespace EnemysBoll
 
             });
         }
+        public void StartMoveToHiro(Transform hiro)
+        {
+            StartCoroutine(MoveToHiro(hiro));
+        }
 
-        IEnumerator MoveToHiro(Transform hiro)
+     public   IEnumerator MoveToHiro(Transform hiro)
         {
             Transform target = hiro;
             while (true)

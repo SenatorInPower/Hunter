@@ -11,6 +11,7 @@ public class EnemysControl : MonoBehaviour/*, IID*/
     internal IEnergy _EnergyEnemys;
     internal IAtack _AtackEnemys;
     internal IHiroTransform _HiroTransform;
+    internal IAtackAction _AtackAction;
     //private int _IDEnemys;
     //public int ID { get => _IDEnemys; set => _IDEnemys = value; }
     private EnemysTipe _EnemysTipe;
@@ -33,6 +34,7 @@ public class EnemysControl : MonoBehaviour/*, IID*/
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtackRed>();
         enemysAtack.InitStats(enemysStats.Demage);
         _AtackEnemys = enemysAtack;
+        _AtackAction = enemysAtack as EnemysAtackRed;
        
         //enemysAtack._ID = this.ID;
 
@@ -56,9 +58,10 @@ public class EnemysControl : MonoBehaviour/*, IID*/
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtackBlue>();
         enemysAtack.InitStats(enemysStats.Demage);
         _AtackEnemys = enemysAtack;
-       
+        _AtackAction = enemysAtack as EnemysAtackBlue;
+
         //enemysAtack._ID = this.ID;
 
-      //  _IDEnemys++;
+        //  _IDEnemys++;
     }
 }

@@ -13,6 +13,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         private GameObject Boll;
      
         internal Atack.HiroAtack atackHiro;
+
         [SerializeField]
         private int BollCount = 10;
 

@@ -9,39 +9,32 @@ namespace Assets.Script.Creatures.Enemys.Class
     {
 
 
+
+
+        [Button]
+     public   void Move()
+        {
+            StartCoroutine(MovePhase());
+        }
         void MoveToRendomPosRadius(int time)
         {
             transform.DOMove(ControlerLevel.RandomLevelPosition(), time);
         }
-        void Atack(Transform hiro, GameObject prefab)
-        {
 
-        }
-        [Button]
-        void starterTest()
-        {
-            StartCoroutine(PatchLoop());
-        }
-        Transform moveTo;
-        IEnumerator PatchLoop()
+       
+        IEnumerator MovePhase()
         {
             while (true)
             {
                 MoveToRendomPosRadius(3);
                 yield return new WaitForSeconds(3);
-                //  yield return new WaitForSeconds(3);
-                yield return StartCoroutine(AtackLoop(HiroTransform));
+                _AtackAction.AtackAction();
+
                 print("gg");
             }
         }
-        IEnumerator AtackLoop(Transform hiro)
-        {
-            while (true)
-            {
-             
-                print("stop");
-                yield break;
-            }
-        }
+
+
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using Assets.Script.Creatures.Interfase;
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -7,9 +6,6 @@ namespace Assets.Script.Creatures.Enemys.Class
 {
     public class EnemysMoveRed : EnemysMove
     {
-    
-
-
         internal void MovePatchToHiro(Transform hiroPos)
         {
             int hightFlie = UnityEngine.Random.Range(6, 10);
@@ -17,7 +13,6 @@ namespace Assets.Script.Creatures.Enemys.Class
 
             twin.Append(transform.DOMove(ControlerLevel.RandomLevelPosition() + Vector3.up * hightFlie, 3)).AppendInterval(2).OnComplete(() => { StartCoroutine(ToHiro(hiroPos)); });
         }
-
 
         IEnumerator ToHiro(Transform hiroPos)
         {

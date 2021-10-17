@@ -8,16 +8,11 @@ namespace Assets.Script.Creatures.Player.Class
     {
         internal Action<GameObject> Teleportation;
         private CapsuleCollider Collider;
-       
 
-        private void OnEnable()
-        {
-            Teleportation += MoveToTeleportation;
-        }
-        private void OnDisable()
+
+        private void OnDestroy()
         {
             Teleportation -= MoveToTeleportation;
-
         }
 
         private int _speed;
@@ -33,6 +28,7 @@ namespace Assets.Script.Creatures.Player.Class
         }
         private void Awake()
         {
+            Teleportation += MoveToTeleportation;
             Collider = gameObject.GetComponent<CapsuleCollider>();
 
             if (Collider == null)
