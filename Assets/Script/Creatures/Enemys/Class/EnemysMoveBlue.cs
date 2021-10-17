@@ -32,7 +32,7 @@ namespace Assets.Script.Creatures.Enemys.Class
             {
                 MoveToRendomPosRadius(3);
                 yield return waitAtack;
-                _AtackAction.AtackAction(null);
+                Control.AtackAction().AtackAction(null);
                 yield return waitMove;
 
             }

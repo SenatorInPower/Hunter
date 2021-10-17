@@ -18,9 +18,9 @@ namespace Assets.Script.Creatures.Enemys.Class
         {
             if (other.tag == ControlerLevel.NameTagHiro)
             {
-                _AtackEnemys.Atack(null);  // нуль для того чтобы не тратить время на вытягивание хп героя, хп есть в интерфейсе
+                Control.AtackEnemys().Atack(null);  // нуль для того чтобы не тратить время на вытягивание хп героя, хп есть в интерфейсе
                 AtackAction(null);
-                _HPEnemys.Dead();
+                Control.HPEnemys().Dead();
             }
         }
     }

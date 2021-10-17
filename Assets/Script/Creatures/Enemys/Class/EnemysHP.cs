@@ -2,7 +2,7 @@ using Assets.Script.Creatures.Interfase;
 using System;
 using UnityEngine;
 
-public class EnemysHP : EnemysControl, IHP, IInit
+public class EnemysHP : MonoBehaviour, IHP, IInit
 {
     internal GameObject effectDead;
     private int _HP;

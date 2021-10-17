@@ -8,7 +8,7 @@ namespace Assets.Script.Creatures.Enemys.Class
     {
         private void OnEnable()
         {
-            MovePatchToHiro(HiroTransform);
+            MovePatchToHiro(Control.HiroTransform) ;
         }
         internal void MovePatchToHiro(Transform hiroPos)
         {
