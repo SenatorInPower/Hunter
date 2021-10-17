@@ -6,9 +6,9 @@ namespace Assets.Script.Creatures.Player.Class
 {
     public sealed class HiroMove : HiroControl, IMove
     {
-
-        public CapsuleCollider Collider;
         internal Action<GameObject> Teleportation;
+        private CapsuleCollider Collider;
+       
 
         private void OnEnable()
         {
@@ -49,7 +49,7 @@ namespace Assets.Script.Creatures.Player.Class
                 Instantiate(particle, transform);
                
             }
-            Vector3 moveTo = gameObject.transform.position + Vector3.forward * 5;
+            Vector3 moveTo = gameObject.transform.position + transform.forward * 5;
             transform.DOMove(moveTo, 1);
         }
         private void OnTriggerExit(Collider other)

@@ -14,7 +14,15 @@ namespace Assets.Script.Creatures.Player.Class
         internal Transform TargetShut;
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
-        
+        private void OnEnable()
+        {
+            ShutHiro += AtackAction;
+        }
+        private void OnDisable()
+        {
+            ShutHiro -= AtackAction;
+
+        }
 
         public override void InitStats<T>(T t)
         {

@@ -7,37 +7,35 @@ namespace Assets.Script.ScenMeneger.Class
 {
     public class Spawn : MonoBehaviour
     {
+       public static Camera Camera;
        public SpawnEnemys SpawnEnemys;
        public SpawnHiro CriateHiro;
-
-        public AbilityAction UITeleport;
-        public AbilityAction UIUlt;
-        public MoveAction MoveAction;
-        public ShutAction ShutAction;
+        
    
         
         private void Awake()
         {
+            Camera = Camera.main;
             Criate();
         }
         void Criate()
         {
            
             GameObject hiro;
-            CriateHiro.InitUI(UITeleport, UIUlt,MoveAction, ShutAction);
+           // CriateHiro.InitUI(UITeleport, UIUlt,MoveAction, ShutAction);
             CriateHiro.HiroCreate(out hiro);
             CriateHiro.InitCamera(hiro.transform);
 
-            MoveAction.Hiro = hiro.transform;
+        //    MoveAction.Hiro = hiro.transform;
 
 
             SpawnEnemys.EnemysCriate(hiro.transform);
-            SpawnEnemys.InitUI(UIUlt);
+         //   SpawnEnemys.InitUI(UIUlt);
         }
         private void OnDisable()
         {
-            UITeleport.action = null;
-            UIUlt.action = null;
+            //UITeleport.action = null;
+            //UIUlt.action = null;
         }
     }
 }

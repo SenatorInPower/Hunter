@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Script.ScenMeneger.Class
+namespace Assets.Script.ScenMeneger.UI
 {
     public class MoveAction : MonoBehaviour
     {
@@ -9,7 +9,7 @@ namespace Assets.Script.ScenMeneger.Class
         [SerializeField]
 
         private ETCJoystick right;
-        [SerializeField]
+       
         internal Transform Hiro;
         [SerializeField]
         private float speedHiro;

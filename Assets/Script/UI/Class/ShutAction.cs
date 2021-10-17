@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets.Script.ScenMeneger.Class
+namespace Assets.Script.ScenMeneger.UI
 {
     public class ShutAction : MonoBehaviour,IDragHandler,IBeginDragHandler
     {
@@ -34,14 +34,11 @@ namespace Assets.Script.ScenMeneger.Class
         {
             Shut.onClick.AddListener(action);
         }
-        void MovePointLogic()
-        {
-
-        }
+  
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            screenPoint = _camera.WorldToScreenPoint(gameObject.transform.position);
 
           //  offset = ShutPoint.transform.position - _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
@@ -54,5 +51,10 @@ namespace Assets.Script.ScenMeneger.Class
              curScreenPoint = _camera.ScreenToWorldPoint(curScreenPoint) /*+ offset*/;
             ShutPoint.position = curScreenPoint;
         }
+        //private void OnDrawGizmos()
+        //{
+        //    Vector3 forward = ShutPoint.position-_camera.transform.forward ;
+        //    Debug.DrawRay(ShutPoint.position, forward);
+        //}
     }
 }

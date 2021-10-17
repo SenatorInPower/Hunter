@@ -1,29 +1,31 @@
 using Assets.Script.Creatures.Enemys.Class;
-using Assets.Script.Creatures.Interfase;
-using DG.Tweening;
+using Assets.Script.ScenMeneger.Class;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Assets.Script.Creatures.Player.HiroAtack
 {
     public class Boll : MonoBehaviour
     {
+        public GameObject particleExplou;
         const string EnemysTag = "Enemys";
         const int SpeedBoll = 10;
         internal int Damage;
-        internal Action<Boll,EnemysAtack> BollCollision;
+        internal Action<Boll, EnemysAtack> BollCollision;
+        Rigidbody _rigidbody;
 
         private bool _stopMoveUpdate = false;
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+        }
         public void MoveTo()
         {
             Transform moveToTransform = SpawnEnemys.AtackNearestBlue(transform.position);
             StartCoroutine(_MoveTo(moveToTransform));
         }
-      
+
         IEnumerator _MoveTo(Transform to)
         {
             _stopMoveUpdate = true;
@@ -39,22 +41,55 @@ namespace Assets.Script.Creatures.Player.HiroAtack
             if (collision.gameObject.tag == EnemysTag)
             {
                 BollCollision.Invoke(this, collision.gameObject.GetComponent<EnemysAtack>());
-               
+
             }
         }
         private void OnEnable()
         {
-            _stopMoveUpdate = false;
+           
+            Shut();
+         //   _stopMoveUpdate = false;
+
+
         }
         private void OnDisable()
         {
 
         }
-        private void Update()
+        private void Shut()
         {
-            if(_stopMoveUpdate == false)
-            transform.Translate(Vector3.forward * Time.deltaTime* SpeedBoll);
+            Vector3 forwardShutVector;
+            forwardShutVector = transform.position;
+            forwardShutVector = (forwardShutVector - Spawn.Camera.transform.position).normalized;
+            _rigidbody.isKinematic = true;
+            _rigidbody.isKinematic = false;
+            _rigidbody.AddForce(forwardShutVector * 20, ForceMode.Impulse);
+           
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == ControlerLevel.NameTagArea)
+            {
+                Invoke("Deactiv", 3);
+            }
+            else
+            {
+                if(particleExplou)
+                Instantiate(particleExplou, transform);
+           
+                gameObject.SetActive(false);
+
+            }
+        }
+        void Deactiv()
+        {
+            if (particleExplou)
+              Instantiate(particleExplou, transform);
+
+            gameObject.SetActive(false);
         }
     }
+
 
 }

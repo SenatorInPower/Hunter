@@ -1,3 +1,4 @@
+using Assets.Script.ScenMeneger.UI;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
@@ -31,8 +32,8 @@ public struct StatsEnemys
 }
 public  class SpawnEnemys : SerializedMonoBehaviour
 {
-   
 
+    public AbilityAction Ult;
     [InfoBox("Select Spawn and Stats value.", InfoMessageType.Info)]
     [NonSerialized, OdinSerialize]
     private EnemysSpawn enemysSpawnRed;
@@ -43,9 +44,9 @@ public  class SpawnEnemys : SerializedMonoBehaviour
     [NonSerialized, OdinSerialize]
     private StatsEnemys enemysBlueStats;
 
-    public void  InitUI(AbilityAction UIUlt)
+    public void  InitUI()
     {
-        UIUlt.action += DestoryEnemys;
+        Ult.action += DestoryEnemys;
     }
    
     public void DestoryEnemys(GameObject parical)
@@ -140,6 +141,7 @@ public  class SpawnEnemys : SerializedMonoBehaviour
     internal void EnemysCriate(Transform hiro)
     {
         Init();
+        InitUI();
         CriateEnemysBlue(hiro);
         CriateEnemysRed(hiro);
      

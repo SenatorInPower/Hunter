@@ -1,6 +1,7 @@
 using Assets.Script.Creatures.Player.Class;
 using Assets.Script.Creatures.Player.HiroAtack;
 using Assets.Script.ScenMeneger.Class;
+using Assets.Script.ScenMeneger.UI;
 using Cinemachine;
 using Sirenix.OdinInspector;
 using System;
@@ -13,17 +14,16 @@ public struct StatsHiro
     public int Demage;
     public int Energy;
     public int Speed;
-    internal Transform targetShutPoint;
-    internal UnityAction Shut;
-    internal Action<GameObject> Teleport;
-    internal Action<GameObject> Ult;
+    
 
 }
 public class SpawnHiro : SerializedMonoBehaviour
 {
-    public CinemachineVirtualCamera virtualCamera;
+    [SerializeField]
+    private CinemachineVirtualCamera virtualCamera;
     [InfoBox("Select Stats value.", InfoMessageType.Info)]
-
+    [SerializeField]
+    public UIAction UI;
     [SerializeField]
     private Transform PosSpawner;
     [SerializeField]
@@ -32,15 +32,15 @@ public class SpawnHiro : SerializedMonoBehaviour
     private StatsHiro HiroStats;
 
 
-    internal void InitUI(AbilityAction UITeleport, AbilityAction UIUlt, MoveAction moveAction, ShutAction ShutAction)
-    {
-        UIUlt.action += HiroStats.Ult;
-        UITeleport.action += HiroStats.Teleport;
-        moveAction.Init(HiroStats.Speed);
-        ShutAction.InitShut(HiroStats.Shut);
-        HiroStats.targetShutPoint = ShutAction.ShutPoint;
+    //internal void InitUI(AbilityAction UITeleport, AbilityAction UIUlt, MoveAction moveAction, ShutAction ShutAction)
+    //{
+    //    UIUlt.action += HiroStats.Ult;
+    //    UITeleport.action += HiroStats.Teleport;
+    //    moveAction.Init(HiroStats.Speed);
+    //    ShutAction.InitShut(HiroStats.Shut);
+    //    HiroStats.targetShutPoint = ShutAction.ShutPoint;
 
-    }
+    //}
     internal void InitCamera(Transform hiro)
     {
         virtualCamera.LookAt = hiro;
@@ -55,7 +55,7 @@ public class SpawnHiro : SerializedMonoBehaviour
 
         Hiro = Instantiate(hiroPrefab, PosSpawner);
         PullLogic pullLogic = Hiro.GetComponent<PullLogic>();
-        HiroControl.InitHiro(Hiro, HiroStats, pullLogic);
+        HiroControl.InitHiro(Hiro, HiroStats, pullLogic, UI);
 
 
     }

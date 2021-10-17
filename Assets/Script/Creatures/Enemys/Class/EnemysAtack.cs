@@ -8,7 +8,7 @@ namespace Assets.Script.Creatures.Enemys.Class
     public abstract class EnemysAtack : EnemysControl, IAtack, IDamage, IInit
     {
 
-        protected CapsuleCollider Collider;
+        
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
         // internal IID _ID;
@@ -38,6 +38,7 @@ namespace Assets.Script.Creatures.Enemys.Class
 
         private void Awake()
         {
+            CapsuleCollider Collider;
             Collider = gameObject.GetComponent<CapsuleCollider>();
 
             if (Collider == null)
