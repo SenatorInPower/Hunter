@@ -3,27 +3,25 @@ using Assets.Script.Creatures.Interfase;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class EnemysControl : SerializedMonoBehaviour/*, IID*/, IHiroStats
+public class EnemysControl : MonoBehaviour/*, IID*/, IHiroStats
 {
 
-   
- 
+
     internal IMove _MoveEnemys;
- 
+
 
     internal IHP _HPEnemys;
 
 
     //internal IEnergy _EnergyEnemys;
-  
+
     internal IAtack _AtackEnemys;
-   
-    //internal IHiroStats _HiroStats;
+
+
     internal IAtackAction _AtackAction;
-    //private int _IDEnemys;
-    //public int ID { get => _IDEnemys; set => _IDEnemys = value; }
+
     private EnemysTipe _EnemysTipe;
-    public EnemysTipe TipeEnemys { get => _EnemysTipe; set => _EnemysTipe = value; }
+    private EnemysTipe TipeEnemys { get => _EnemysTipe; set => _EnemysTipe = value; }
 
     #region HiroStats
 
@@ -31,10 +29,11 @@ public class EnemysControl : SerializedMonoBehaviour/*, IID*/, IHiroStats
     public Transform HiroTransform { get => _hiroMove; set => _hiroMove = value; }
 
     private IHP _HPHiro;
-    public IHP HPHiro { get => _HPHiro; set => _HPHiro = value; }
+    public IHP HPHiro { get => _HPHiro; set => _HPHiro = value; }    
 
     private IEnergy _energy;
     public IEnergy EnergyHiro { get => _energy; set => _energy = value; }
+
     internal int EnergyToHiro;
 
     #endregion

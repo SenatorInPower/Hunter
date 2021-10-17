@@ -3,9 +3,9 @@ using System;
 using UnityEngine;
 namespace Assets.Script.Creatures.Enemys.Class
 {
-    public abstract class EnemysAtack : EnemysControl, IAtack, IDamage, IInit, IHiroStats
+    public abstract class EnemysAtack : EnemysControl, IAtack, IDamage, IInit
     {
-        
+        internal EnemysControl control;
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
       
@@ -35,7 +35,7 @@ namespace Assets.Script.Creatures.Enemys.Class
 
         public void AtackOut(int damage)
         {
-            _HPEnemys.HP -= damage;
+            control.EnemysControls().HP -= damage;
             if (_HPEnemys.HP < 1)
             {
                 EnergyHiro.Energy += EnergyToHiro;
