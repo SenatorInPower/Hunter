@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class EnemysControl : SerializedMonoBehaviour/*, IID*/, IHiroStats
 {
-
-   
  
     internal IMove _MoveEnemys;
  

@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 namespace Assets.Script.Creatures.Enemys.Class
 {
-    public abstract class EnemysAtack : EnemysControl, IAtack, IDamage, IInit, IHiroStats
+    public abstract class EnemysAtack : EnemysControl, IAtack, IDamage, IInit
     {
         
         private int _damage;
