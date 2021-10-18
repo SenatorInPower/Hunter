@@ -12,7 +12,7 @@ namespace Assets.Script.Creatures.Enemys.Class
         WaitForSeconds waitMove => new WaitForSeconds(1);
         private void OnEnable()
         {
-            MovePhase();
+            Move();
         }
 
         [Button]

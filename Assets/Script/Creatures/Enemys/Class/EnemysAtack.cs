@@ -5,11 +5,12 @@ namespace Assets.Script.Creatures.Enemys.Class
 {
     public abstract class EnemysAtack : MonoBehaviour, IAtack, IDamage, IInit
     {
-        public EnemysControl Control;
+        internal EnemysControl Control;
+        [SerializeField]
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
-      
-     
+
+        
         // internal IID _ID;
         private void Awake()
         {
@@ -29,7 +30,7 @@ namespace Assets.Script.Creatures.Enemys.Class
             Control.HPHiro.HP -= _damage;
             if (Control.HPHiro.HP < 1)
             {
-                Control.HPHiro.Dead();
+                Control.HPHiro.Dead.Invoke();
             }
         }
 
@@ -39,7 +40,7 @@ namespace Assets.Script.Creatures.Enemys.Class
             if (Control.HPEnemys().HP < 1)
             {
                 Control.EnergyHiro.Energy += Control.EnergyToHiro;
-                Control.HPEnemys().Dead();
+                Control.HPEnemys().Dead.Invoke();
             }
         }
 

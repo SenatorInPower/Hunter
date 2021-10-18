@@ -48,6 +48,7 @@ namespace Assets.Script.Creatures.Player.Class
             HiroHP hiroHP = obj.AddComponent<HiroHP>();
             hiroHP.InitStats(hiroStats.HP);
             _HPHiro = hiroHP;
+            hiroHP.Dead += UI.DeadAction;
 
             HiroEnergy hiroEnergy = obj.AddComponent<HiroEnergy>();
             hiroEnergy.InitStats(hiroStats.Energy);
@@ -62,6 +63,7 @@ namespace Assets.Script.Creatures.Player.Class
             hiroAtack.TargetShut = UI.ShutAction.ShutPoint;
             UI.ShutAction.Shut.onClick.AddListener(hiroAtack.ShutHiro);
             UI.ShutAction.Shut.onClick.AddListener(pullLogic.Shut);
+            
             //hiroAtack.ShutHiro = hiroStats.Shut;
             //hiroAtack.ShutHiro += pullLogic.Shut;
             //hiroAtack.TargetShut = hiroStats.targetShutPoint;

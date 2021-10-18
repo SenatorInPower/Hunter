@@ -12,6 +12,8 @@ namespace Assets.Script.Creatures.Player.Class
         internal UnityAction ShutHiro;
         internal IEnergy Energy;
         internal Transform TargetShut;
+
+        [SerializeField]
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
         private void OnEnable()

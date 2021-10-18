@@ -1,14 +1,13 @@
 using Assets.Script.Creatures.Interfase;
-using DG.Tweening;
 using System;
-using System.Collections;
 using UnityEngine;
 namespace Assets.Script.Creatures.Enemys.Class
 {
     public abstract class EnemysMove : MonoBehaviour, IMove, IInit
     {
-        public EnemysControl Control;
+        internal EnemysControl Control;
 
+        [SerializeField]
         private int _speed;
         public int Speed { get => _speed; set => _speed = value; }
 

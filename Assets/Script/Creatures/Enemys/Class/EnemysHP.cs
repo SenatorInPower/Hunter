@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemysHP : MonoBehaviour, IHP, IInit
 {
-    internal GameObject effectDead;
+    
+
+    [SerializeField]
     private int _HP;
     public int HP { get => _HP; set { _HP = value; if (_HP < 1) { _dead.Invoke(); } } }
-
+    [SerializeField]
     private int _MaxHP;
     public int MaxHP { get => _MaxHP; }
 
@@ -19,21 +21,20 @@ public class EnemysHP : MonoBehaviour, IHP, IInit
         _HP = Convert.ToInt32(t);
         _MaxHP = _HP;
     }
-    private void OnEnable()
+    private void Awake()
     {
         _dead += DeadEffect;
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         _dead -= DeadEffect;
-
     }
     void DeadEffect()
     {
-        if (effectDead)
-        {
-            Instantiate(effectDead, transform.position, Quaternion.identity);
-        }
+        //if (effectDead)
+        //{
+        //    Instantiate(effectDead, transform.position, Quaternion.identity);
+        //}
         gameObject.SetActive(false);
     }
 }

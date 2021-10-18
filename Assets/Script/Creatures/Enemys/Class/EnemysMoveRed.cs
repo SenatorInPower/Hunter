@@ -12,17 +12,26 @@ namespace Assets.Script.Creatures.Enemys.Class
         }
         internal void MovePatchToHiro(Transform hiroPos)
         {
-            int hightFlie = UnityEngine.Random.Range(6, 10);
+            int hightFlie = UnityEngine.Random.Range(1, 3);
             Sequence twin = DOTween.Sequence();
-
-            twin.Append(transform.DOMove(ControlerLevel.RandomLevelPosition() + Vector3.up * hightFlie, 3)).AppendInterval(2).OnComplete(() => { StartCoroutine(ToHiro(hiroPos)); });
+            Vector3 moveUp = ControlerLevel.RandomLevelPosition() + Vector3.up * hightFlie;
+            twin.Append(transform.DOMove(moveUp, 3))/*.AppendInterval(1)*/.OnComplete(() => { inAir = transform.position; StartCoroutine(ToHiro(hiroPos)); });
+            print(moveUp);
         }
-
+        Vector3 inAir;
         IEnumerator ToHiro(Transform hiroPos)
         {
+            float time = 0;
+            float distTime = Vector3.Distance(inAir, hiroPos.position) / 10;
+            float timeDist = Mathf.Lerp(2, 4, distTime);
             while (true)
             {
-                transform.position = Vector3.Lerp(transform.position, hiroPos.position, Time.deltaTime);
+                time += Time.deltaTime/ timeDist;
+                transform.position = Vector3.Lerp(inAir, hiroPos.position, time);
+                if (time > 1)
+                {
+                    yield break;
+                }
                 yield return null;
             }
         }

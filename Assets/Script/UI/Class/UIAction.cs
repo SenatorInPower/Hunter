@@ -7,5 +7,11 @@ namespace Assets.Script.ScenMeneger.UI
         public AbilityAction UIUlt;
         public MoveAction MoveAction;
         public ShutAction ShutAction;
+
+       
+        public void  DeadAction()
+        {
+            
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         public GameObject particleExplou;
         const string EnemysTag = "Enemys";
         const int SpeedBoll = 10;
+      
         internal int Damage;
         internal Action<Boll, IAtack> BollCollision;
         Rigidbody _rigidbody;

@@ -1,8 +1,11 @@
 using Assets.Script.Creatures.Enemys.Class;
 using Assets.Script.Creatures.Interfase;
+using Assets.Script.ScenMeneger.UI;
+using EnemysBoll;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class EnemysControl : MonoBehaviour/*, IID*/, IHiroStats
+public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
 {
     private IMove _MoveEnemys;
     public IMove MoveEnemys()
@@ -84,14 +87,14 @@ public class EnemysControl : MonoBehaviour/*, IID*/, IHiroStats
         // _IDEnemys++;
     }
 
-    internal void InitEnemysBlue(GameObject obj, StatsEnemys enemysStats, Transform hiro)
+    internal void InitEnemysBlue(GameObject obj, StatsEnemys enemysStats, Transform hiro, AbilityAction Teleport)
     {
 
         EnemysMove enemysMove = obj.AddComponent<EnemysMoveBlue>();
         enemysMove.InitStats(enemysStats.Speed);
         _MoveEnemys = enemysMove;
         enemysMove.Control = this;
-
+       
         // enemysMove._ID = this.ID;
 
         EnemysHP enemysHP = obj.AddComponent<EnemysHP>();
@@ -104,6 +107,14 @@ public class EnemysControl : MonoBehaviour/*, IID*/, IHiroStats
         _AtackEnemys = enemysAtack;
         _AtackAction = enemysAtack as EnemysAtackBlue;
         HiroTransform = hiro;
+        Teleport.action += (enemysAtack as EnemysAtackBlue)._TeleportHiro_();
+
+
+        BollPull bollPull = obj.GetComponent<BollPull>();
+        bollPull.EnemysAtack = enemysAtack;
+        bollPull.Init(obj.transform);
+        (enemysAtack as EnemysAtackBlue).BollPull = bollPull;
+       
 
         _HPHiro = hiro.gameObject.GetComponent<IHP>();
         _energy = hiro.gameObject.GetComponent<IEnergy>();

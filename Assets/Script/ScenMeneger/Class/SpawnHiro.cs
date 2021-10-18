@@ -47,7 +47,8 @@ public class SpawnHiro : SerializedMonoBehaviour
         virtualCamera.Follow = hiro;
         CinemachineTransposer cinemashin = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         cinemashin.m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
-        cinemashin.m_FollowOffset = new Vector3(0f, 0.5f, -1.3f);
+        // cinemashin.m_FollowOffset = new Vector3(0f, 0.5f, -1.3f);
+         cinemashin.m_FollowOffset = new Vector3(0f, -0.08f, -0.80f);
     }
     //[Button]
     internal void HiroCreate(out GameObject Hiro)

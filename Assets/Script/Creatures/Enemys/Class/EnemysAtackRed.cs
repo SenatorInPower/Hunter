@@ -20,7 +20,7 @@ namespace Assets.Script.Creatures.Enemys.Class
             {
                 Control.AtackEnemys().Atack(null);  // нуль для того чтобы не тратить время на вытягивание хп героя, хп есть в интерфейсе
                 AtackAction(null);
-                Control.HPEnemys().Dead();
+                Control.HPEnemys().Dead.Invoke();
             }
         }
     }

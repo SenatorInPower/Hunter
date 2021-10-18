@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3588495433094852918}
   - component: {fileID: 5551912331401942892}
   - component: {fileID: 8026357127433411618}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boll
-  m_TagString: Untagged
+  m_TagString: Boll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb7240a66f700042b8120087dd0af65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleExplou: {fileID: 0}
 --- !u!54 &8026357127433411618
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ namespace Assets.Script.Creatures.Player.Class
     public sealed class HiroEnergy : HiroControl, IEnergy
     {
         internal Action<GameObject> Ultimate;
+
+        [SerializeField]
         private int _energy;
         public int Energy { get =>Mathf.Clamp(_energy, 0, 100); set => _energy=value; }
 

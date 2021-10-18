@@ -34,6 +34,7 @@ public  class SpawnEnemys : SerializedMonoBehaviour
 {
 
     public AbilityAction Ult;
+    public AbilityAction Teleport;
     [InfoBox("Select Spawn and Stats value.", InfoMessageType.Info)]
     [NonSerialized, OdinSerialize]
     private EnemysSpawn enemysSpawnRed;
@@ -132,9 +133,9 @@ public  class SpawnEnemys : SerializedMonoBehaviour
         Spawn();
     }
     private void Init()
-    {
-        enemysControlsRed = new List<EnemysControl>();
+    {      
         enemysControlsBlue = new List<EnemysControl>();
+     //   enemysControlsRed = new List<EnemysControl>();
     }
 
     //[Button]
@@ -143,13 +144,13 @@ public  class SpawnEnemys : SerializedMonoBehaviour
         Init();
         InitUI();
         CriateEnemysBlue(hiro);
-        CriateEnemysRed(hiro);
+      //  CriateEnemysRed(hiro);
      
     }
     void Spawn()
     {
         StartCoroutine(SpawnBlue());
-        StartCoroutine(SpawnRed());
+      //  StartCoroutine(SpawnRed());
     }
     private void CriateEnemysRed(Transform hiro)
     {
@@ -170,7 +171,7 @@ public  class SpawnEnemys : SerializedMonoBehaviour
         {
             GameObject blue = Instantiate(enemysSpawnBlue.Prefab, enemysSpawnBlue.SpawnPos);
             EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
-            enemysControl.InitEnemysBlue(blue, enemysBlueStats, hiro);
+            enemysControl.InitEnemysBlue(blue, enemysBlueStats, hiro, Teleport);
             enemysControlsBlue.Add(enemysControl);
             enemysControl.TipeEnemys = EnemysTipe.Blue;
             blue.SetActive(false);

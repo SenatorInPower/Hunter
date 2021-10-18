@@ -15,6 +15,7 @@ namespace Assets.Script.Creatures.Player.Class
             Teleportation -= MoveToTeleportation;
         }
 
+        [SerializeField]
         private int _speed;
         public int Speed { get => _speed; set => _speed = value; }
 
