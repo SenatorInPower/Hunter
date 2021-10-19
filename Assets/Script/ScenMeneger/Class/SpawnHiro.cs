@@ -19,19 +19,23 @@ public struct StatsHiro
 }
 public class SpawnHiro : SerializedMonoBehaviour
 {
+
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
     [InfoBox("Select Stats value.", InfoMessageType.Info)]
-    [SerializeField]
-    public UIAction UI;
+
     [SerializeField]
     private Transform PosSpawner;
     [SerializeField]
     private GameObject hiroPrefab;
     [SerializeField]
     private StatsHiro HiroStats;
-
-
+    [SerializeField]
+    private UIAction UI;
+    public void SetUI(UIAction UI)
+    {
+        this.UI = UI;
+    }
     //internal void InitUI(AbilityAction UITeleport, AbilityAction UIUlt, MoveAction moveAction, ShutAction ShutAction)
     //{
     //    UIUlt.action += HiroStats.Ult;

@@ -8,7 +8,7 @@ namespace Assets.Script.Creatures.Player.Class
     {
         [SerializeField]
         private int _HP;
-        public int HP { get => _HP; set { _HP = value; if (_HP < 1) { _dead.Invoke(); } } }
+        public int HP { get => _HP; set { _HP = value; /*if (_HP < 1) { _dead.Invoke(); }*/ /*  if (_HP == MaxHP) { gameObject.SetActive(true); Time.timeScale = 1; }*/ } }
         private int _maxHP;
         public int MaxHP { get => _maxHP; }
         private Action _dead;
@@ -19,11 +19,11 @@ namespace Assets.Script.Creatures.Player.Class
             _HP = Convert.ToInt32(hp);
             _maxHP = _HP;
         }
-        private void OnEnable()
+        private void Awake()
         {
             _dead += DeadHiro;
         }
-        private void OnDisable()
+        private void OnDestroy()
         {
             _dead -= DeadHiro;
 
@@ -31,7 +31,7 @@ namespace Assets.Script.Creatures.Player.Class
         void DeadHiro()
         {
             gameObject.SetActive(false);
-            Time.timeScale = 0;
+           // Time.timeScale = 0;
         }
     }
 }

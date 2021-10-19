@@ -34,13 +34,20 @@ namespace Assets.Script.Creatures.Enemys.Class
             }
         }
 
-        public void AtackOut(int damage)
+        public void AtackOut(int damage,Action<bool> ifDead)
         {
             Control.HPEnemys().HP -= damage;
+
             if (Control.HPEnemys().HP < 1)
             {
                 Control.EnergyHiro.Energy += Control.EnergyToHiro;
                 Control.HPEnemys().Dead.Invoke();
+                ifDead.Invoke(true);
+            }
+            else
+            {
+                ifDead.Invoke(true);
+
             }
         }
 

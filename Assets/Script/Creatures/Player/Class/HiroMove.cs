@@ -44,7 +44,7 @@ namespace Assets.Script.Creatures.Player.Class
             if (particle != null)
             {
                 Instantiate(particle, transform);
-               
+
             }
             Vector3 moveTo = gameObject.transform.position + transform.forward * 5;
             transform.DOMove(moveTo, 1);
@@ -53,9 +53,9 @@ namespace Assets.Script.Creatures.Player.Class
         {
             if (other.tag == ControlerLevel.NameTagArea)
             {
-                Vector3 posHiroTeleport= ControlerLevel.RandomLevelPosition();
+                Vector3 posHiroTeleport = ControlerLevel.RandomLevelPosition(transform.position);
                 transform.position = posHiroTeleport;
-            //    print(posHiroTeleport);
+                //    print(posHiroTeleport);
             }
         }
 
@@ -67,6 +67,6 @@ namespace Assets.Script.Creatures.Player.Class
             }
         }
 
-      
+
     }
 }

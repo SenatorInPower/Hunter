@@ -14,7 +14,7 @@ namespace Assets.Script.Creatures.Enemys.Class
         {
             int hightFlie = UnityEngine.Random.Range(1, 3);
             Sequence twin = DOTween.Sequence();
-            Vector3 moveUp = ControlerLevel.RandomLevelPosition() + Vector3.up * hightFlie;
+            Vector3 moveUp = ControlerLevel.RandomLevelPosition(transform.position) + Vector3.up * hightFlie;
             twin.Append(transform.DOMove(moveUp, 3))/*.AppendInterval(1)*/.OnComplete(() => { inAir = transform.position; StartCoroutine(ToHiro(hiroPos)); });
             print(moveUp);
         }

@@ -33,7 +33,11 @@ namespace Assets.Script.Creatures.Player.Class
         //{
         //    return GetComponent<IAtack>();
         //}
-
+        static void ResetStatsOnStart()
+        {
+            _HPHiro.HP = 100;
+            _EnergyHiro.Energy = 0;           
+        }
 
         internal static void InitHiro(GameObject obj, StatsHiro hiroStats,PullLogic pullLogic,UIAction UI)
         {
@@ -42,18 +46,28 @@ namespace Assets.Script.Creatures.Player.Class
             HiroMove hiroMove = obj.AddComponent<HiroMove>();
             hiroMove.InitStats(hiroStats.Speed);           
             _MoveHiro = hiroMove;
+
             UI.UITeleport.action += hiroMove.Teleportation;
             UI.MoveAction.Hiro = obj.transform;
+
+
 
             HiroHP hiroHP = obj.AddComponent<HiroHP>();
             hiroHP.InitStats(hiroStats.HP);
             _HPHiro = hiroHP;
             hiroHP.Dead += UI.DeadAction;
+           
+
 
             HiroEnergy hiroEnergy = obj.AddComponent<HiroEnergy>();
             hiroEnergy.InitStats(hiroStats.Energy);
             _EnergyHiro = hiroEnergy;
+
             UI.UIUlt.action += hiroEnergy.Ultimate;
+            UI.UITeleport._HiroEnergy = hiroEnergy;
+            UI.UIUlt._HiroEnergy = hiroEnergy;
+
+
 
             HiroAtack hiroAtack = obj.AddComponent<HiroAtack>();
             hiroAtack.InitStats(hiroStats.Demage);
@@ -61,15 +75,15 @@ namespace Assets.Script.Creatures.Player.Class
             pullLogic.atackHiro = hiroAtack;
             pullLogic.Init();
             hiroAtack.TargetShut = UI.ShutAction.ShutPoint;
+
             UI.ShutAction.Shut.onClick.AddListener(hiroAtack.ShutHiro);
             UI.ShutAction.Shut.onClick.AddListener(pullLogic.Shut);
-            
-            //hiroAtack.ShutHiro = hiroStats.Shut;
-            //hiroAtack.ShutHiro += pullLogic.Shut;
-            //hiroAtack.TargetShut = hiroStats.targetShutPoint;
+
+         
 
 
-
+            UI.Menu.Restart.onClick.AddListener(ResetStatsOnStart);
+           
         }
 
        

@@ -32,9 +32,8 @@ public struct StatsEnemys
 }
 public  class SpawnEnemys : SerializedMonoBehaviour
 {
-
-    public AbilityAction Ult;
-    public AbilityAction Teleport;
+    
+ 
     [InfoBox("Select Spawn and Stats value.", InfoMessageType.Info)]
     [NonSerialized, OdinSerialize]
     private EnemysSpawn enemysSpawnRed;
@@ -45,9 +44,15 @@ public  class SpawnEnemys : SerializedMonoBehaviour
     [NonSerialized, OdinSerialize]
     private StatsEnemys enemysBlueStats;
 
+    private UIAction UI;
+    public void SetUI(UIAction UI)
+    {
+        this.UI = UI;
+    }
+
     public void  InitUI()
     {
-        Ult.action += DestoryEnemys;
+        UI.UIUlt.action += DestoryEnemys;
     }
    
     public void DestoryEnemys(GameObject parical)
@@ -171,7 +176,7 @@ public  class SpawnEnemys : SerializedMonoBehaviour
         {
             GameObject blue = Instantiate(enemysSpawnBlue.Prefab, enemysSpawnBlue.SpawnPos);
             EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
-            enemysControl.InitEnemysBlue(blue, enemysBlueStats, hiro, Teleport);
+            enemysControl.InitEnemysBlue(blue, enemysBlueStats, hiro, UI);
             enemysControlsBlue.Add(enemysControl);
             enemysControl.TipeEnemys = EnemysTipe.Blue;
             blue.SetActive(false);

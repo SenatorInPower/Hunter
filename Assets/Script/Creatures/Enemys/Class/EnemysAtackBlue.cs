@@ -9,7 +9,7 @@ namespace Assets.Script.Creatures.Enemys.Class
 { //атака перенесена в enemysmoveblue из за связи атаки с движением
     public class EnemysAtackBlue : EnemysAtack, IAtackAction
     {
-        internal Action<GameObject> _TeleportHiro;
+        private Action<GameObject> _TeleportHiro;
         internal BollPull BollPull;
 
         internal Action<GameObject> _TeleportHiro_()

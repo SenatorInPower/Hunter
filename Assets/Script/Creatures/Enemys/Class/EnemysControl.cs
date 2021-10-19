@@ -87,7 +87,7 @@ public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
         // _IDEnemys++;
     }
 
-    internal void InitEnemysBlue(GameObject obj, StatsEnemys enemysStats, Transform hiro, AbilityAction Teleport)
+    internal void InitEnemysBlue(GameObject obj, StatsEnemys enemysStats, Transform hiro, UIAction MenuAction)
     {
 
         EnemysMove enemysMove = obj.AddComponent<EnemysMoveBlue>();
@@ -100,14 +100,14 @@ public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
         EnemysHP enemysHP = obj.AddComponent<EnemysHP>();
         enemysHP.InitStats(enemysStats.HP);
         _HPEnemys = enemysHP;
-
+        enemysHP.Dead+=MenuAction.Menu.TextEnemysAdd; //Dead enemys text
 
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtackBlue>();
         enemysAtack.InitStats(enemysStats.Demage);
         _AtackEnemys = enemysAtack;
         _AtackAction = enemysAtack as EnemysAtackBlue;
         HiroTransform = hiro;
-        Teleport.action += (enemysAtack as EnemysAtackBlue)._TeleportHiro_();
+        MenuAction.UITeleport.action += (enemysAtack as EnemysAtackBlue)._TeleportHiro_();
 
 
         BollPull bollPull = obj.GetComponent<BollPull>();

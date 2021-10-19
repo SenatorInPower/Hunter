@@ -104,7 +104,6 @@ namespace EnemysBoll
                 transform.position = Vector3.Lerp(startMove, moveTo, time);
                 if (time > 1)
                 {
-
                     gameObject.SetActive(false);
                 }
                 yield return null;

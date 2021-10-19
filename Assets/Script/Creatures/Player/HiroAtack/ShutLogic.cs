@@ -1,14 +1,13 @@
 ﻿using Assets.Script.Creatures.Interfase;
+using EnemysBoll;
 using UnityEngine;
 
 namespace Assets.Script.Creatures.Player.HiroAtack
 {
     public partial class PullLogic
     {
-        private void OnEnable()
-        {
-            print("shut logic eneble");
-        }
+        private Boll navBolControler;
+       
 
         public void Shut()
         {
@@ -25,16 +24,29 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         void Damage(Boll boll, IAtack enemysAtack)
         {
             atackHiro.Atack(null);
-            enemysAtack.AtackOut(boll.Damage);
-            float Chens = Random.Range(atackHiro.ChensRandom(), 100);
-
-            if (Chens > 98)  //if hiro hp is lou chens for move boll in next enemys is up
+            navBolControler = boll;
+            enemysAtack.AtackOut(boll.Damage,  BoolMoveIFEnemysDead);
+           
+        }
+     
+        void BoolMoveIFEnemysDead(bool dead)
+        {
+            if (dead)
             {
-                boll.MoveTo();
+                float Chens = Random.Range(atackHiro.ChensRandom(), 100);
+
+                if (Chens > 30)  //if hiro hp is lou chens for move boll in next enemys is up
+                {
+                    navBolControler.MoveTo();
+                }
+                else
+                {
+                    navBolControler.gameObject.SetActive(false);
+                }
             }
             else
             {
-                boll.gameObject.SetActive(false);
+                navBolControler.gameObject.SetActive(false);
             }
         }
 

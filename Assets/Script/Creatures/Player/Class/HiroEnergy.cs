@@ -13,11 +13,11 @@ namespace Assets.Script.Creatures.Player.Class
         private int _energy;
         public int Energy { get =>Mathf.Clamp(_energy, 0, 100); set => _energy=value; }
 
-        private void OnEnable()
+        private void Awake()
         {
             Ultimate += UltimateHiro;
         }
-        private void OnDisable()
+        private void OnDestroy()
         {
             Ultimate = UltimateHiro;
 
@@ -31,18 +31,7 @@ namespace Assets.Script.Creatures.Player.Class
         {
             if (particle != null)
             {
-                if (Energy > 99)
-                {
-                    Instantiate(particle, transform);
-                    Energy = 0;
-                }
-            }
-            else
-            {
-                if (Energy > 99)
-                {              
-                    Energy = 0;
-                }
+                    Instantiate(particle, transform);   
             }
         }
     }
