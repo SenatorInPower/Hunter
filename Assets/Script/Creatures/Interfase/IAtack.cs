@@ -6,7 +6,7 @@ namespace Assets.Script.Creatures.Interfase
 {
     public interface IAtack 
     {
-        public void AtackOut(int damage);
+        public void AtackOut(int damage,Action<bool> ifDead);
         public void Atack(IHP HP);
 
        

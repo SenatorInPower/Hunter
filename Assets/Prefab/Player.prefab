@@ -122,7 +122,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   Boll: {fileID: 3588495433094852917, guid: 60b5040d95781924586a45ae6317958a, type: 3}
-  atackHiro: {fileID: 0}
   BollCount: 10
 --- !u!54 &6405942191622919969
 Rigidbody:

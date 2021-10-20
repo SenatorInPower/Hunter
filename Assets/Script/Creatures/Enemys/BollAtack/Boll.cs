@@ -2,11 +2,14 @@ using DG.Tweening;
 using UnityEngine;
 using System.Collections;
 using System;
+using Assets.Script.Creatures.Interfase;
+
 namespace EnemysBoll
 {
     public class Boll : MonoBehaviour
     {
         internal bool stopIfTeleport = false;
+        internal IAtack EnemysAtack;
         //public Action stopTeleportation;
         //private void OnEnable()
         //{
@@ -68,35 +71,43 @@ namespace EnemysBoll
         public void StartMoveToHiro(Transform hiro)
         {
             StartCoroutine(MoveToHiro(hiro));
+            //MoveToTarget(hiro, null);
         }
 
      public   IEnumerator MoveToHiro(Transform hiro)
         {
             Transform target = hiro;
+            float time = 0;
+            Vector3 start = transform.position;
             while (true)
             {
-                transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime / 3);
+                time += Time.deltaTime;
+                transform.position = Vector3.Lerp(start, target.position, time);
                 if (stopIfTeleport)
                 {
                     StartCoroutine(MoveIfTeleport(hiro.position));
+                    stopIfTeleport = false;
                     yield break;
                 }
+                yield return null;
             }
         }
 
         IEnumerator MoveIfTeleport(Vector3 moveTo)
         {
+           
             Vector3 startMove = transform.position;
             float time = 0;
             while (true)
             {
-                time += Time.deltaTime;
+                time += Time.deltaTime/2;
                 transform.position = Vector3.Lerp(startMove, moveTo, time);
                 if (time > 1)
                 {
-
                     gameObject.SetActive(false);
                 }
+                yield return null;
+
             }
         }
 
@@ -104,7 +115,7 @@ namespace EnemysBoll
         {
             if (other.tag == ControlerLevel.NameTagHiro)
             {
-
+                EnemysAtack.Atack(null);
                 gameObject.SetActive(false);
             }
         }

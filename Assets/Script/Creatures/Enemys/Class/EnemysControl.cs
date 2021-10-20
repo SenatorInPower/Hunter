@@ -1,25 +1,43 @@
 using Assets.Script.Creatures.Enemys.Class;
 using Assets.Script.Creatures.Interfase;
+using Assets.Script.ScenMeneger.UI;
+using EnemysBoll;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class EnemysControl : SerializedMonoBehaviour/*, IID*/, IHiroStats
+public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
 {
- 
-    internal IMove _MoveEnemys;
- 
+ private IMove _MoveEnemys;
+    public IMove MoveEnemys()
+    {
+        return _MoveEnemys;
+    }
 
-    internal IHP _HPEnemys;
+    private IHP _HPEnemys;
 
-
+    public IHP HPEnemys()
+    {
+        return _HPEnemys;
+    }
     //internal IEnergy _EnergyEnemys;
-  
-    internal IAtack _AtackEnemys;
-   
-    //internal IHiroStats _HiroStats;
-    internal IAtackAction _AtackAction;
-    //private int _IDEnemys;
-    //public int ID { get => _IDEnemys; set => _IDEnemys = value; }
+
+    private IAtack _AtackEnemys;
+
+    public IAtack AtackEnemys()
+    {
+        return _AtackEnemys;
+    }
+
+    private IAtackAction _AtackAction;
+    public IAtackAction AtackAction()
+    {
+        return _AtackAction;
+    }
+
+    public IHiroStats HiroStats()
+    {
+        return this;
+    }
     private EnemysTipe _EnemysTipe;
     public EnemysTipe TipeEnemys { get => _EnemysTipe; set => _EnemysTipe = value; }
 
@@ -33,6 +51,7 @@ public class EnemysControl : SerializedMonoBehaviour/*, IID*/, IHiroStats
 
     private IEnergy _energy;
     public IEnergy EnergyHiro { get => _energy; set => _energy = value; }
+
     internal int EnergyToHiro;
 
     #endregion
@@ -43,7 +62,7 @@ public class EnemysControl : SerializedMonoBehaviour/*, IID*/, IHiroStats
         EnemysMove enemysMove = obj.AddComponent<EnemysMoveRed>();
         enemysMove.InitStats(enemysStats.Speed);
         _MoveEnemys = enemysMove;
-
+        enemysMove.Control = this;
         // enemysMove._ID = this.ID;
 
         EnemysHP enemysHP = obj.AddComponent<EnemysHP>();
@@ -60,35 +79,48 @@ public class EnemysControl : SerializedMonoBehaviour/*, IID*/, IHiroStats
         _HPHiro = hiro.gameObject.GetComponent<IHP>();
         _energy = hiro.gameObject.GetComponent<IEnergy>();
         EnergyToHiro = 15;
+        enemysAtack.Control = this;
 
         //enemysAtack._ID = this.ID;
 
         // _IDEnemys++;
     }
 
-    internal void InitEnemysBlue(GameObject obj, StatsEnemys enemysStats, Transform hiro)
+    internal void InitEnemysBlue(GameObject obj, StatsEnemys enemysStats, Transform hiro, UIAction MenuAction)
     {
 
         EnemysMove enemysMove = obj.AddComponent<EnemysMoveBlue>();
         enemysMove.InitStats(enemysStats.Speed);
         _MoveEnemys = enemysMove;
-
+        enemysMove.Control = this;
+       
         // enemysMove._ID = this.ID;
 
         EnemysHP enemysHP = obj.AddComponent<EnemysHP>();
         enemysHP.InitStats(enemysStats.HP);
         _HPEnemys = enemysHP;
-
+        enemysHP.Dead+=MenuAction.Menu.TextEnemysAdd; //Dead enemys text
 
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtackBlue>();
         enemysAtack.InitStats(enemysStats.Demage);
         _AtackEnemys = enemysAtack;
         _AtackAction = enemysAtack as EnemysAtackBlue;
         HiroTransform = hiro;
+        MenuAction.UITeleport.action += (enemysAtack as EnemysAtackBlue)._TeleportHiro_();
+
+
+        BollPull bollPull = obj.GetComponent<BollPull>();
+        bollPull.EnemysAtack = enemysAtack;
+        bollPull.Init(obj.transform);
+        (enemysAtack as EnemysAtackBlue).BollPull = bollPull;
+       
 
         _HPHiro = hiro.gameObject.GetComponent<IHP>();
         _energy = hiro.gameObject.GetComponent<IEnergy>();
-        enemysAtack.EnergyToHiro = 50;
+        EnergyToHiro = 50;
+
+        enemysAtack.Control = this;
+
         //enemysAtack._ID = this.ID;
 
         //  _IDEnemys++;

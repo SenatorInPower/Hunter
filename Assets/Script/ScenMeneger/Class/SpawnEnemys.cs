@@ -20,20 +20,20 @@ public struct EnemysSpawn
     public int SpawnCount;
     public GameObject Prefab;
     public Transform SpawnPos;
-    
+
 }
 public struct StatsEnemys
 {
     public int HP;
     public int Demage;
     public int Speed;
-    
+
 
 }
-public  class SpawnEnemys : SerializedMonoBehaviour
+public class SpawnEnemys : SerializedMonoBehaviour
 {
 
-    public AbilityAction Ult;
+
     [InfoBox("Select Spawn and Stats value.", InfoMessageType.Info)]
     [NonSerialized, OdinSerialize]
     private EnemysSpawn enemysSpawnRed;
@@ -44,11 +44,17 @@ public  class SpawnEnemys : SerializedMonoBehaviour
     [NonSerialized, OdinSerialize]
     private StatsEnemys enemysBlueStats;
 
-    public void  InitUI()
+    private UIAction UI;
+    public void SetUI(UIAction UI)
     {
-        Ult.action += DestoryEnemys;
+        this.UI = UI;
     }
-   
+
+    public void InitUI()
+    {
+        UI.UIUlt.action += DestoryEnemys;
+    }
+
     public void DestoryEnemys(GameObject parical)
     {
         foreach (EnemysControl item in enemysControlsRed)
@@ -125,16 +131,16 @@ public  class SpawnEnemys : SerializedMonoBehaviour
         }
 
     }
-  
-  
+
+
     private void Start()
     {
         Spawn();
     }
     private void Init()
     {
-        enemysControlsRed = new List<EnemysControl>();
         enemysControlsBlue = new List<EnemysControl>();
+        enemysControlsRed = new List<EnemysControl>();
     }
 
     //[Button]
@@ -144,7 +150,7 @@ public  class SpawnEnemys : SerializedMonoBehaviour
         InitUI();
         CriateEnemysBlue(hiro);
         CriateEnemysRed(hiro);
-     
+
     }
     void Spawn()
     {
@@ -170,7 +176,7 @@ public  class SpawnEnemys : SerializedMonoBehaviour
         {
             GameObject blue = Instantiate(enemysSpawnBlue.Prefab, enemysSpawnBlue.SpawnPos);
             EnemysControl enemysControl = blue.AddComponent<EnemysControl>();
-            enemysControl.InitEnemysBlue(blue, enemysBlueStats, hiro);
+            enemysControl.InitEnemysBlue(blue, enemysBlueStats, hiro, UI);
             enemysControlsBlue.Add(enemysControl);
             enemysControl.TipeEnemys = EnemysTipe.Blue;
             blue.SetActive(false);
@@ -201,7 +207,7 @@ public  class SpawnEnemys : SerializedMonoBehaviour
                 }
                 _waitTimeRed = new WaitForSeconds(timeSpawnRed);
             }
-          
+
         }
     }
 

@@ -3,13 +3,16 @@ using System;
 using UnityEngine;
 namespace Assets.Script.Creatures.Enemys.Class
 {
-    public abstract class EnemysAtack : EnemysControl, IAtack, IDamage, IInit
+
+    public abstract class EnemysAtack : MonoBehaviour, IAtack, IDamage, IInit
+
     {
-        
+        internal EnemysControl Control;
+        [SerializeField]
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
-      
-     
+
+        
         // internal IID _ID;
         private void Awake()
         {
@@ -26,20 +29,27 @@ namespace Assets.Script.Creatures.Enemys.Class
 
         public void Atack(IHP hiro)
         {
-            HPHiro.HP -= _damage;
-            if (HPHiro.HP < 1)
+            Control.HPHiro.HP -= _damage;
+            if (Control.HPHiro.HP < 1)
             {
-                HPHiro.Dead();
+                Control.HPHiro.Dead.Invoke();
             }
         }
 
-        public void AtackOut(int damage)
+        public void AtackOut(int damage,Action<bool> ifDead)
         {
-            _HPEnemys.HP -= damage;
-            if (_HPEnemys.HP < 1)
+            Control.HPEnemys().HP -= damage;
+
+            if (Control.HPEnemys().HP < 1)
             {
-                EnergyHiro.Energy += EnergyToHiro;
-                _HPEnemys.Dead();
+                Control.EnergyHiro.Energy += Control.EnergyToHiro;
+                Control.HPEnemys().Dead.Invoke();
+                ifDead.Invoke(true);
+            }
+            else
+            {
+                ifDead.Invoke(true);
+
             }
         }
 

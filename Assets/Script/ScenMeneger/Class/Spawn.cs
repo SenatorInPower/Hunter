@@ -1,4 +1,5 @@
 ﻿using Assets.Script.Creatures.Player.HiroAtack;
+using Assets.Script.ScenMeneger.UI;
 using Cinemachine;
 using System.Collections;
 using UnityEngine;
@@ -7,7 +8,9 @@ namespace Assets.Script.ScenMeneger.Class
 {
     public class Spawn : MonoBehaviour
     {
+
        public static Camera Camera;
+        public UIAction UI;
        public SpawnEnemys SpawnEnemys;
        public SpawnHiro CriateHiro;
         
@@ -16,8 +19,13 @@ namespace Assets.Script.ScenMeneger.Class
         private void Awake()
         {
             Camera = Camera.main;
+
+            SpawnEnemys.SetUI(UI);
+            CriateHiro.SetUI(UI);
+
             Criate();
         }
+        
         void Criate()
         {
            

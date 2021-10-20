@@ -10,9 +10,10 @@ namespace Assets.Script.Creatures.Enemys.Class
 
         WaitForSeconds waitAtack => new WaitForSeconds(2);
         WaitForSeconds waitMove => new WaitForSeconds(1);
+
         private void OnEnable()
         {
-            MovePhase();
+            Move();
         }
 
         [Button]
@@ -22,7 +23,12 @@ namespace Assets.Script.Creatures.Enemys.Class
         }
         void MoveToRendomPosRadius(int time)
         {
-            transform.DOMove(ControlerLevel.RandomLevelPosition(), time);
+            Vector3 to = ControlerLevel.RandomLevelPosition(transform.position);
+            float distTime = Vector3.Distance(transform.position, to);
+            distTime = Mathf.Lerp(0, 10, distTime / 10);
+            
+
+            transform.DOMove(to, distTime);
         }
 
 
@@ -32,13 +38,10 @@ namespace Assets.Script.Creatures.Enemys.Class
             {
                 MoveToRendomPosRadius(3);
                 yield return waitAtack;
-                _AtackAction.AtackAction(null);
+                Control.AtackAction().AtackAction(null);
                 yield return waitMove;
 
             }
         }
-
-
-
     }
 }

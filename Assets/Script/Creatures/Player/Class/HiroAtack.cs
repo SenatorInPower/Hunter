@@ -12,13 +12,15 @@ namespace Assets.Script.Creatures.Player.Class
         internal UnityAction ShutHiro;
         internal IEnergy Energy;
         internal Transform TargetShut;
+
+        [SerializeField]
         private int _damage;
         public int DamageGive { get => _damage; set => _damage = value; }
-        private void OnEnable()
+        private void Awake()
         {
             ShutHiro += AtackAction;
         }
-        private void OnDisable()
+        private void OnDestroy()
         {
             ShutHiro -= AtackAction;
 
@@ -59,7 +61,7 @@ namespace Assets.Script.Creatures.Player.Class
             }
            
         }
-        public void AtackOut(int damage)
+        public void AtackOut(int damage,Action<bool> ifDead)
         {
             //_HPHiro.HP -= damage;
             //if(_HPHiro.HP < 1) 

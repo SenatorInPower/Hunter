@@ -12,6 +12,7 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         public GameObject particleExplou;
         const string EnemysTag = "Enemys";
         const int SpeedBoll = 10;
+      
         internal int Damage;
         internal Action<Boll, IAtack> BollCollision;
         Rigidbody _rigidbody;
@@ -24,16 +25,26 @@ namespace Assets.Script.Creatures.Player.HiroAtack
         public void MoveTo()
         {
             Transform moveToTransform = SpawnEnemys.AtackNearestBlue(transform.position);
+
+            if(moveToTransform)
             StartCoroutine(_MoveTo(moveToTransform));
         }
 
         IEnumerator _MoveTo(Transform to)
         {
+            _rigidbody.isKinematic = true;
+            float time = 0;
             _stopMoveUpdate = true;
             while (true)
             {
-                gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, to.position, Time.deltaTime);
-
+                time += Time.deltaTime / 3;
+                gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, to.position, time);
+                if (time > 1|| to.gameObject.activeSelf==false)
+                {
+                    _rigidbody.isKinematic = false;
+                    gameObject.SetActive(false);
+                    yield break;
+                }
                 yield return null;
             }
         }
