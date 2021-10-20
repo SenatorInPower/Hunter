@@ -3,7 +3,9 @@ using System;
 using UnityEngine;
 namespace Assets.Script.Creatures.Enemys.Class
 {
+
     public abstract class EnemysAtack : MonoBehaviour, IAtack, IDamage, IInit
+
     {
         internal EnemysControl Control;
         [SerializeField]

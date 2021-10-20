@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
 {
-    private IMove _MoveEnemys;
+ private IMove _MoveEnemys;
     public IMove MoveEnemys()
     {
         return _MoveEnemys;
@@ -19,7 +19,6 @@ public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
     {
         return _HPEnemys;
     }
-
     //internal IEnergy _EnergyEnemys;
 
     private IAtack _AtackEnemys;
