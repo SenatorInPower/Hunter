@@ -56,10 +56,13 @@ namespace Assets.Script.Creatures.Player.Class
             hiroHP.InitStats(hiroStats.HP);
             _HPHiro = hiroHP;
             hiroHP.Dead += UI.DeadAction;
-           
+
+            MoveStatsBar moveStatsBarHP = obj.transform.Find("HPBar").GetComponent<MoveStatsBar>();
+            moveStatsBarHP.MaxValue = hiroHP.MaxHP;
+            hiroHP.HPBar = moveStatsBarHP;
 
 
-            HiroEnergy hiroEnergy = obj.AddComponent<HiroEnergy>();
+             HiroEnergy hiroEnergy = obj.AddComponent<HiroEnergy>();
             hiroEnergy.InitStats(hiroStats.Energy);
             _EnergyHiro = hiroEnergy;
 
@@ -67,6 +70,9 @@ namespace Assets.Script.Creatures.Player.Class
             UI.UITeleport._HiroEnergy = hiroEnergy;
             UI.UIUlt._HiroEnergy = hiroEnergy;
 
+            MoveStatsBar moveStatsBarEnergy = obj.transform.Find("EnergyBar").GetComponent<MoveStatsBar>();
+            moveStatsBarEnergy.MaxValue = hiroEnergy.Energy;
+            hiroEnergy.EnergyBar = moveStatsBarEnergy;
 
 
             HiroAtack hiroAtack = obj.AddComponent<HiroAtack>();

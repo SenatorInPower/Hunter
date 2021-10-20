@@ -48,7 +48,7 @@ namespace Assets.Script.Creatures.Enemys.Class
             }
             else
             {
-                ifDead.Invoke(true);
+                ifDead.Invoke(false);
 
             }
         }

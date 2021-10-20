@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemysHP : MonoBehaviour, IHP, IInit
 {
-    
 
+    internal MoveStatsBar HPBar;
     [SerializeField]
     private int _HP;
-    public int HP { get => _HP; set { _HP = value; if (_HP < 1) { _dead.Invoke(); } } }
+    public int HP { get => _HP; set { _HP = value; if (_HP < 1) { _dead.Invoke(); } HPBar.MoveStats(HP); } }
     [SerializeField]
     private int _MaxHP;
     public int MaxHP { get => _MaxHP; }
@@ -36,5 +36,6 @@ public class EnemysHP : MonoBehaviour, IHP, IInit
         //    Instantiate(effectDead, transform.position, Quaternion.identity);
         //}
         gameObject.SetActive(false);
+        HPBar.MoveStats(_MaxHP);
     }
 }

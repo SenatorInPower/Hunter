@@ -30,7 +30,7 @@ public class SpawnHiro : SerializedMonoBehaviour
     private GameObject hiroPrefab;
     [SerializeField]
     private StatsHiro HiroStats;
-    [SerializeField]
+   
     private UIAction UI;
     public void SetUI(UIAction UI)
     {

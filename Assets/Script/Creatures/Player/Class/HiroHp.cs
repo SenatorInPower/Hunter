@@ -6,9 +6,10 @@ namespace Assets.Script.Creatures.Player.Class
 {
     public sealed class HiroHP : HiroControl, IHP
     {
+        internal MoveStatsBar HPBar;
         [SerializeField]
         private int _HP;
-        public int HP { get => _HP; set { _HP = value; /*if (_HP < 1) { _dead.Invoke(); }*/ /*  if (_HP == MaxHP) { gameObject.SetActive(true); Time.timeScale = 1; }*/ } }
+        public int HP { get => _HP; set { _HP = value; HPBar.MoveStats(HP); } }
         private int _maxHP;
         public int MaxHP { get => _maxHP; }
         private Action _dead;

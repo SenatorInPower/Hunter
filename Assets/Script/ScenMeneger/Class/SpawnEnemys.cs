@@ -118,9 +118,9 @@ public class SpawnEnemys : SerializedMonoBehaviour
     }
     internal static Transform AtackNearestBlue(Vector3 from)
     {
-        //  RaycastHit[] rhit = Physics.BoxCastAll(transform.position, Vector3.one * 7);
-        Transform enemys = enemysControlsBlue.Where(t => t.gameObject.activeInHierarchy).OrderBy(t => Vector3.Distance(from, t.transform.position)).FirstOrDefault().transform;
-
+       
+        Transform enemys = enemysControlsBlue.Where(t => t.gameObject.activeInHierarchy ).OrderBy(t => Vector3.Distance(from, t.transform.position)).FirstOrDefault().transform;
+         
         if (enemys)
         {
             return enemys;

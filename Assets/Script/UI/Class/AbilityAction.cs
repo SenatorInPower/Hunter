@@ -17,7 +17,7 @@ namespace Assets.Script.ScenMeneger.UI
         bool Eneble = true;
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (Eneble&& EnergyToUseAbility< _HiroEnergy.Energy)
+            if (Eneble&& EnergyToUseAbility<= _HiroEnergy.Energy)
             {
                 _HiroEnergy.Energy-= EnergyToUseAbility;
                 DOTween.To(() => TimeReset, x => TimeReset = x, 3, 3).OnComplete(() => Eneble = true);

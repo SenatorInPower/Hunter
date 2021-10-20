@@ -1,5 +1,6 @@
 using Assets.Script.Creatures.Enemys.Class;
 using Assets.Script.Creatures.Interfase;
+using Assets.Script.Creatures.Player.Class;
 using Assets.Script.ScenMeneger.UI;
 using EnemysBoll;
 using Sirenix.OdinInspector;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
 {
- private IMove _MoveEnemys;
+    private IMove _MoveEnemys;
     public IMove MoveEnemys()
     {
         return _MoveEnemys;
@@ -69,6 +70,9 @@ public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
         enemysHP.InitStats(enemysStats.HP);
         _HPEnemys = enemysHP;
 
+        MoveStatsBar moveStatsBar = obj.transform.Find("HPBar").GetComponent<MoveStatsBar>();
+        moveStatsBar.MaxValue = enemysHP.HP;
+        enemysHP.HPBar = moveStatsBar;
 
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtackRed>();
         enemysAtack.InitStats(enemysStats.Demage);
@@ -93,13 +97,18 @@ public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
         enemysMove.InitStats(enemysStats.Speed);
         _MoveEnemys = enemysMove;
         enemysMove.Control = this;
-       
+
         // enemysMove._ID = this.ID;
 
         EnemysHP enemysHP = obj.AddComponent<EnemysHP>();
         enemysHP.InitStats(enemysStats.HP);
         _HPEnemys = enemysHP;
-        enemysHP.Dead+=MenuAction.Menu.TextEnemysAdd; //Dead enemys text
+        enemysHP.Dead += MenuAction.Menu.TextEnemysAdd; //Dead enemys text
+
+        MoveStatsBar moveStatsBar = obj.transform.Find("HPBar").GetComponent<MoveStatsBar>();
+        moveStatsBar.MaxValue = enemysHP.HP;
+        enemysHP.HPBar = moveStatsBar;
+
 
         EnemysAtack enemysAtack = obj.AddComponent<EnemysAtackBlue>();
         enemysAtack.InitStats(enemysStats.Demage);
@@ -113,7 +122,7 @@ public class EnemysControl : SerializedMonoBehaviour /*, IID*/, IHiroStats
         bollPull.EnemysAtack = enemysAtack;
         bollPull.Init(obj.transform);
         (enemysAtack as EnemysAtackBlue).BollPull = bollPull;
-       
+
 
         _HPHiro = hiro.gameObject.GetComponent<IHP>();
         _energy = hiro.gameObject.GetComponent<IEnergy>();

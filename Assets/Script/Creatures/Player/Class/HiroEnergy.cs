@@ -7,11 +7,13 @@ namespace Assets.Script.Creatures.Player.Class
 {
     public sealed class HiroEnergy : HiroControl, IEnergy
     {
+        internal MoveStatsBar EnergyBar;
+
         internal Action<GameObject> Ultimate;
 
         [SerializeField]
         private int _energy;
-        public int Energy { get =>Mathf.Clamp(_energy, 0, 100); set => _energy=value; }
+        public int Energy { get => _energy; set { _energy = Mathf.Clamp(value, 0, 100); EnergyBar.MoveStats(Energy); } }
 
         private void Awake()
         {
